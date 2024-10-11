@@ -20,9 +20,9 @@ I've decided to form a shortlist of models with strong APIs. The reason is that 
     - Most commonly used LLM (arguably) which could generate interest in project
   - Llama 2
     - Open source and geared towards research
-    - Strong API with great documentation
-    - FREE for research purposes
-    - Tunable (!!)
+    - Strong API with great documentation available for low cost
+    - FREE to build for research purposes - i.e with HPC could build & use for free
+    - Tunable (!!) if access to HPC, could tune to generate more complex writing
 
 While Claude and Gemini also provide strong APIs, the expense of Claude does not scale to the experience that I had testing the model. In personal experience, Gemini was the least helpful in generating new writing - it may simply be personal preference, but I didn't care for the writing style and the "ideas" it suggested were the least new, least complex, and least interesting.
 
@@ -32,6 +32,8 @@ While Claude and Gemini also provide strong APIs, the expense of Claude does not
 
   - Reasoning:
     - Llama 2 is free for research and open source - to me this is the kind of product I would prefer to support
-    - Strong API, great documentation, community of research users and hobbyist who might find this project interesting
-    - Tunable, which is a huge advantage. I would argue that the tunability is essential to this project - a model that can be tuned to generate more complex and interesting writing is a huge advantage. A model that hasn't been tuned is probably not going to generate the best paper that can be written using current LLM technology.
+    - Strong API, great documentation available at lowest price point
+    - Tunable, which is a huge advantage. (Need HPC to do tuning, but could be well worth it)
     - Personal testing showed at least as good performance/usability as GPT-4o, making the cost of GPT-4o unnecessary
+
+I can initially access through llama-API, building a small app around use of API to generate and save content. If we can gain access to HPC, we can look into running for free and tuning. Either way, this should be the most cost effective high quality option.
