@@ -68,7 +68,8 @@ class ChatContext:
         # Form the api request based on the user message
         api_request = {
             "messages": [{"role": "user", "content": request}],
-            "stream":   False
+            "stream":   False,
+            "max_tokens": 500,
         }
 
         # Write the request to the chat log
