@@ -61,6 +61,20 @@ class ChatContext:
     # METHODS
 
     """
+    ChatContext.clear_history() -> None
+
+    Clears the chat history for the particular session. This is useful for 
+    sessions where each successive response is not dependent on the previous,
+    as it will save significant token usage and therefore cost.
+    """
+    def clear_history(self) -> None:
+        # Indicate history cleared in log and to stdout
+        self.chat_log.write(
+            "###_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_\n")
+        print("_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_")
+        self.history = []
+
+    """
     ChatContext.send_request(request: str) -> Dict
 
     Sends a request to the model and returns the response JSON dict. The request

@@ -5,7 +5,7 @@
 # ChatLib config. The file name of the chat log is assigned automatically.     #
 #                                                                              #
 # Author: Edward Speer                                                         #
-# Revision Date: 10/17/24                                                      #
+# Revision Date: 10/21/24                                                      #
 ################################################################################
 
 ################################################################################
@@ -61,8 +61,11 @@ def main() -> None:
         user_input = input("You: ")
         if user_input == "exit":
             break
-        response = chat.send_request(user_input)
-        chat.handle_response(response)
+        elif user_input == "clear":
+            chat.clear_history()
+        else:
+            response = chat.send_request(user_input)
+            chat.handle_response(response)
 
 
 if __name__ == "__main__":
