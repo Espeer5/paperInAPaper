@@ -1,6 +1,6 @@
 # CHAT LOG WITH MODEL llama3.1-70b
 
-In this chat, I am picking Llama's brain to help refine a question surrounding algorithmic fairness and the philosophical study of justice to focus the inner paper on. The resulting discussion is of fairly high quality, and I am pleased with the results.
+In this chat, I am picking Llama's brain to help refine a question surrounding algorithmic fairness and the philosophical study of justice to focus the inner paper on. The resulting discussion is of fairly high quality, and I am pleased with the results. 
 
 ### USER:
 Please give me an overview of the philisophical study of algorithmic fairness
@@ -159,3 +159,8 @@ Write an introduction to a philisophical paper that focuses on how individual co
 Here is a potential introduction for the philosophical paper:
 
 The concept of justice has long been a cornerstone of philosophical inquiry, with various thinkers offering their own unique perspectives on what constitutes fairness and equality. In recent years, the development of algorithmic fairness measures has brought this philosophical concern to the forefront of technological design. While distributive justice, which focuses on the distribution of goods and resources, has been a dominant paradigm in this context, we argue that individual concepts of justice must also be emphasized in the design of algorithmic fairness measures. This paper seeks to explore the ways in which individual concepts of justice, such as retributive, restorative, and procedural justice, can be integrated into the development of algorithmic fairness measures. Our guiding question is: How can algorithmic fairness measures be designed to account for the diverse and often conflicting individual concepts of justice that exist within and across societies, in order to promote more equitable and just outcomes? By examining the intersection of philosophical theories of justice and algorithmic fairness, we hope to contribute to a more nuanced understanding of what it means to design fair and just algorithms, and to provide a framework for future research and development in this area.
+
+
+check quotes
+rethink session memory
+What would it mean to have an entitlement account based on ind. char.

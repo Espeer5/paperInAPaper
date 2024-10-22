@@ -7,7 +7,7 @@
 # responses back.                                                              #
 #                                                                              #
 # Author: Edward Speer                                                         #
-# Revision Date: 10/17/24                                                      #
+# Revision Date: 10/21/24                                                      #
 ################################################################################
 
 ################################################################################
@@ -15,9 +15,9 @@
 ################################################################################
 
 import json
-import typing
+from typing import Dict, List, Tuple, IO
 
-from llamaapi import LlamaAPI
+from openai import OpenAI
 
 from ChatLib.config import *
 
@@ -34,18 +34,20 @@ class ChatContext:
 
     # ATTRIBUTES
 
-    api:       LlamaAPI
+    api:       OpenAI
     model:     str
     resp_file: str
-    chat_log:  typing.IO
+    chat_log:  IO
+    history:   List[Tuple[str, str]]
 
     # CONSTRUCTORS AND DESTRUCTORS
 
     def __init__(self, out_file):
-        self.api       = LlamaAPI(API_KEY)
+        self.api       = OpenAI(api_key=API_KEY, base_url = API_URL)
         self.model     = MODEL
         self.resp_file = out_file
         self.chat_log  = open(self.resp_file, "w")
+        self.history   = []
         self.chat_log.write(f"# CHAT LOG WITH MODEL {MODEL}\n\n")
 
     """
@@ -64,19 +66,24 @@ class ChatContext:
     Sends a request to the model and returns the response JSON dict. The request
     will be sent with appropriate formatting out to the log file.
     """
-    def send_request(self, request: str) -> typing.Dict:
-        # Form the api request based on the user message
-        api_request = {
-            "messages": [{"role": "user", "content": request}],
-            "stream":   False,
-            "max_tokens": 500,
-        }
+    def send_request(self, request: str) -> Dict:
+        # Add the user request to the chat history
+        self.history.append(("user", request))
+        
+        # Form the api request based on the user message and the full message
+        # history
+        message_stream = [{"role": hist[0], "content": hist[1]} for hist in
+                          self.history]
+        response = self.api.chat.completions.create(
+            model    = self.model,
+            messages = message_stream
+        )
 
         # Write the request to the chat log
         self.chat_log.write(f"### USER:\n{request}\n")
 
         # Send the request to the model and return the response
-        return json.loads(json.dumps(self.api.run(api_request).json()))
+        return json.loads(response.model_dump_json())
 
     """
     ChatContext.handle_response(response: Dict) -> None
@@ -85,7 +92,7 @@ class ChatContext:
     printing it to the terminal. Not that the response may contain multiple 
     options for messages. This will be handled correctly here.
     """
-    def handle_response(self, response: typing.Dict) -> None:
+    def handle_response(self, response: Dict) -> None:
         # For each message, write and print
         for message in response["choices"]:
             out_str = (f"### {MODEL}.{message['index']}:\n" +
@@ -96,3 +103,13 @@ class ChatContext:
 
             # Print the message to the terminal
             print(out_str)
+        
+        # If there are multiple responses, ask the user which one they prefer
+        # to add to the chat history
+        resp_num = 0
+        if (len(response["choices"]) > 1):
+            resp_num = int(input("Which response do you prefer? "))
+        
+        # Add the model response to the chat history
+        self.history.append(("assistant",
+                           response["choices"][resp_num]["message"]["content"]))
