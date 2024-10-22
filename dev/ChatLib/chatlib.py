@@ -89,8 +89,9 @@ class ChatContext:
         message_stream = [{"role": hist[0], "content": hist[1]} for hist in
                           self.history]
         response = self.api.chat.completions.create(
-            model    = self.model,
-            messages = message_stream
+            model      = self.model,
+            messages   = message_stream,
+            max_tokens = MAX_TOKENS
         )
 
         # Write the request to the chat log

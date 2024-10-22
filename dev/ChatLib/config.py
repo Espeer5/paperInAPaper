@@ -16,3 +16,6 @@ with open("/Users/espeer/secrets.txt") as api_key_file:
 
 # The model to chat with
 MODEL = "llama3.1-70b"
+
+# Maximum number of toens to allow in a chat completion
+MAX_TOKENS = 1000
