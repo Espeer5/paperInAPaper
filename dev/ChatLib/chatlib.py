@@ -1,13 +1,12 @@
 ################################################################################
 # chatlib.py                                                                   #
 #                                                                              #
-# :synopsis: This module provides a simple library for chatting with a chosen  #
-# Llama model in a chatroom via Llama API. A chatroom is a space in the        #
-# terminal where the user can make recurrent requests to the model and receive #
-# responses back.                                                              #
+# This module provides a simple library for chatting with a chosen Llama model #
+# in a chatroom via Llama API. A chatroom is a space in the terminal where the #
+# user can make recurrent requests to the model and receive responses back.    #
 #                                                                              #
 # Author: Edward Speer                                                         #
-# Revision Date: 10/21/24                                                      #
+# Revision Date: 10/24/24                                                      #
 ################################################################################
 
 ################################################################################
