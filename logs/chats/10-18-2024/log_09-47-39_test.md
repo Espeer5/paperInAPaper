@@ -1,6 +1,6 @@
 # CHAT LOG WITH MODEL llama3.1-70b
 
-This chat was a very simple test gto ensure I could communicate with the model using my application.
+This chat was a very simple test to ensure I could communicate with the model using my application.
 
 ### USER:
 How are you today llama?

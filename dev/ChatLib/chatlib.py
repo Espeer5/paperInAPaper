@@ -70,8 +70,8 @@ class ChatContext:
     def clear_history(self) -> None:
         # Indicate history cleared in log and to stdout
         self.chat_log.write(
-            "###_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_\n")
-        print("_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_")
+            "### HISTORY CLEARED\n")
+        print("-_-_-_-_-_-_-_-_-_HISTORY CLEARED-_-_-_-_-_-_-_-_-_")
         self.history = []
 
     """
@@ -85,9 +85,8 @@ class ChatContext:
         with open(history_file, "rb") as file:
             self.history = pkl.load(file)
         # Announce to terminal and log that history has been loaded from file
-        self.chat_log.write(
-            f"###_-_-_-_-_-_-_-_-_-_HISTORY LOADED FROM {history_file}_-_-_-_-_-_-_-_-_-_\n")
-        print(f"_-_-_-_-_-_-_-_-_-_HISTORY LOADED FROM {history_file}_-_-_-_-_-_-_-_-_-_")
+        self.chat_log.write(f"### HISTORY LOADED FROM {history_file}\n")
+        print(f"_-_-_-_-_-_-_HISTORY LOADED FROM {history_file}_-_-_-_-_-_-_")
 
     """
     ChatContext.save_history(history_file: str) -> None
@@ -100,9 +99,8 @@ class ChatContext:
         with open(history_file, "wb") as file:
             pkl.dump(self.history, file)
         # Announce to terminal and log that history has been saved to file
-        self.chat_log.write(
-            f"###_-_-_-_-_-_-_-_-_-_HISTORY SAVED TO {history_file}_-_-_-_-_-_-_-_-_-_\n")
-        print(f"_-_-_-_-_-_-_-_-_-_HISTORY SAVED TO {history_file}_-_-_-_-_-_-_-_-_-_")
+        self.chat_log.write(f"### HISTORY SAVED TO {history_file}\n")
+        print(f"_-_-_-_-_-_-_-_HISTORY SAVED TO {history_file}_-_-_-_-_-_-_-_")
 
     """
     ChatContext.send_request(request: str) -> Dict
