@@ -84,6 +84,10 @@ class ChatContext:
     def load_history(self, history_file: str) -> None:
         with open(history_file, "rb") as file:
             self.history = pkl.load(file)
+        # Announce to terminal and log that history has been loaded from file
+        self.chat_log.write(
+            f"###_-_-_-_-_-_-_-_-_-_HISTORY LOADED FROM {history_file}_-_-_-_-_-_-_-_-_-_\n")
+        print(f"_-_-_-_-_-_-_-_-_-_HISTORY LOADED FROM {history_file}_-_-_-_-_-_-_-_-_-_")
 
     """
     ChatContext.save_history(history_file: str) -> None
@@ -95,6 +99,10 @@ class ChatContext:
     def save_history(self, history_file: str) -> None:
         with open(history_file, "wb") as file:
             pkl.dump(self.history, file)
+        # Announce to terminal and log that history has been saved to file
+        self.chat_log.write(
+            f"###_-_-_-_-_-_-_-_-_-_HISTORY SAVED TO {history_file}_-_-_-_-_-_-_-_-_-_\n")
+        print(f"_-_-_-_-_-_-_-_-_-_HISTORY SAVED TO {history_file}_-_-_-_-_-_-_-_-_-_")
 
     """
     ChatContext.send_request(request: str) -> Dict
