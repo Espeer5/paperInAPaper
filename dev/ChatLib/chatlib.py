@@ -15,6 +15,7 @@
 ################################################################################
 
 import json
+import pickle as pkl
 from typing import Dict, List, Tuple, IO
 
 from openai import OpenAI
@@ -73,6 +74,28 @@ class ChatContext:
             "###_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_\n")
         print("_-_-_-_-_-_-_-_-_-_HISTORY CLEARED_-_-_-_-_-_-_-_-_-_")
         self.history = []
+
+    """
+    ChatContext.load_history(history_file: str) -> None
+
+    Loads a chat history (context) from a pickle file. This allows the
+    conversation from a previous session to be continued in a new session later
+    on. Note that these hisotries are not human readable.
+    """
+    def load_history(self, history_file: str) -> None:
+        with open(history_file, "rb") as file:
+            self.history = pkl.load(file)
+
+    """
+    ChatContext.save_history(history_file: str) -> None
+
+    Saves the chat history (context) to a pickle file. This allows the
+    conversation to be continued in a new session later on. Note that these
+    histories are not human readable.
+    """
+    def save_history(self, history_file: str) -> None:
+        with open(history_file, "wb") as file:
+            pkl.dump(self.history, file)
 
     """
     ChatContext.send_request(request: str) -> Dict
