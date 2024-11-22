@@ -12,3 +12,16 @@ __pycache__/
 .Python
 ipython/
 .ipynb_checkpoints/
+
+# Latex artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
