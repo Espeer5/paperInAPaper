@@ -14,7 +14,7 @@
 
 ## Algorithmic Fairness Measures
  - Present formalism of algorithmic fairness measures
- - Present common measures and hisotry of their devlopment
+ - Present common measures and history of their devlopment
    - i.e, why was each measure developed, what does it aim to capture
 
 ## Entitlement Justice in Algorithmic Fairness
