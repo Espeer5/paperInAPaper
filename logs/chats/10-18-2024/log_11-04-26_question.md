@@ -3,7 +3,7 @@
 In this chat, I am picking Llama's brain to help refine a question surrounding algorithmic fairness and the philosophical study of justice to focus the inner paper on. The resulting discussion is of fairly high quality, and I am pleased with the results. 
 
 ### USER:
-Please give me an overview of the philisophical study of algorithmic fairness
+Please give me an overview of the philosophical study of algorithmic fairness
 ### llama3.1-70b.0:
 A fascinating topic!
 
@@ -30,7 +30,7 @@ The study of algorithmic fairness has far-reaching implications for various doma
 
 By exploring the philosophical aspects of algorithmic fairness, we can better understand the ethical implications of AI decision-making and work towards creating more just and equitable societies.
 ### USER:
-How does the field of algorithmic fairness relate to the philisophical study of justice?
+How does the field of algorithmic fairness relate to the philosophical study of justice?
 ### llama3.1-70b.0:
 The field of algorithmic fairness is closely related to the philosophical study of justice, particularly in the context of distributive justice. Distributive justice concerns the fair distribution of goods, services, and opportunities among individuals or groups.
 
@@ -59,7 +59,7 @@ Between John Rawls' theory of justice as fairness and Robert Nozick's theory of 
 
 These theories offer alternative perspectives on what constitutes justice, and some may be seen as a compromise between Rawls' and Nozick's theories. However, each theory has its own strengths and weaknesses, and there is ongoing debate among philosophers and scholars about which theory best captures the essence of justice.
 ### USER:
-How does the spectrum of justice theories between Rawls and Nozick relate to the philisophical study of algorithmic fairness measures?
+How does the spectrum of justice theories between Rawls and Nozick relate to the philosophical study of algorithmic fairness measures?
 ### llama3.1-70b.0:
 A fascinating question!
 
@@ -93,7 +93,7 @@ Distributive-focused measures:
 
 These measures are not mutually exclusive, and many algorithms use a combination of individual-focused and distributive-focused measures to achieve fairness.
 ### USER:
-I want to come up with a philisophical question for a thesis that relates the spectrum of theories of justice between Rawls and Nozick to the study of measured of algorithmic fairness. What sorts of ideas do you have for questions in this arena?
+I want to come up with a philosophical question for a thesis that relates the spectrum of theories of justice between Rawls and Nozick to the study of measured of algorithmic fairness. What sorts of ideas do you have for questions in this arena?
 ### llama3.1-70b.0:
 What a fascinating topic! Here are some potential philosophical questions that relate the spectrum of theories of justice between Rawls and Nozick to the study of measures of algorithmic fairness:
 
@@ -154,7 +154,7 @@ By enforcing demographic parity, an algorithmic fairness measure like this promo
 
 In summary, demographic parity is a measure of algorithmic fairness that enforces an individual concept of justice by ensuring equal treatment of individuals from different demographic groups, regardless of their demographic characteristics.
 ### USER:
-Write an introduction to a philisophical paper that focuses on how individual concepts of justice, and not solely distributive, can be emphasized in algorithmic fairness measure design. The introduction should contain within it the very specific guiding question of the research paper.
+Write an introduction to a philosophical paper that focuses on how individual concepts of justice, and not solely distributive, can be emphasized in algorithmic fairness measure design. The introduction should contain within it the very specific guiding question of the research paper.
 ### llama3.1-70b.0:
 Here is a potential introduction for the philosophical paper:
 

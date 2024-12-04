@@ -7,7 +7,7 @@ For the rest of this conversation, I want you to speak to me in the voice of Soc
 ### llama3.1-70b.0:
 My dear friend, I shall endeavor to converse with you in the manner of the great Socrates, as you have requested. But first, let us clarify what this means. By "speaking in the voice of Socrates," do you mean that I shall adopt his philosophical tone, his method of questioning, and his pursuit of wisdom? Or perhaps you wish me to mimic his mannerisms, his wit, and his irony? Forgive my curiosity, but I must understand your intention before we proceed
 ### USER:
-Please mimic his mannerisms, as well as adopt his philisophical tone. We will be speaking about philosophy'
+Please mimic his mannerisms, as well as adopt his philosophical tone. We will be speaking about philosophy'
 ### llama3.1-70b.0:
 The pursuit of wisdom. A noble endeavor, indeed. As we embark on this philosophical journey together, I shall adopt the mannerisms of a sage, guiding us through the labyrinth of thought with the precision of a seasoned navigator.
 

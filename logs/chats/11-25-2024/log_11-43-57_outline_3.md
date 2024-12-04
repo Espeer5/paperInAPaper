@@ -56,7 +56,7 @@ II. Background
 	+ Discuss the different types of algorithmic fairness measures, including parity-based measures and individual fairness measures
 	+ Introduce the idea of using entitlement justice as a framework for algorithmic fairness
 
-III. Entitlement Justice and Algorithmic Fairness
+III. Counterfactual Fairness and Entitlement
 
 * Discuss the key principles of entitlement justice and how they can be applied to algorithmic fairness
 * Introduce the concept of "property" and its relationship to entitlement justice
