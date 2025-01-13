@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper]{article}
+\documentclass[11pt, a4paper, hyphens]{article}
 \usepackage[a4paper, left=30mm, right=30mm]{geometry} % margin=2.6cm
 
 \usepackage[utf8]{inputenc}  % allow utf-8 input
@@ -79,22 +79,22 @@ December\fi, \number \year}
     \input{sections/abstract.tex}
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction}\label{sec:introduction}
 \input{sections/intro.tex}
 
-\section{Algorithmic Fairness}
+\section{Background}\label{sec:background}
 \input{sections/bkg_alg_fairness.tex}
 
-\section{Entitlement Justice}
+\section{Entitlement Justice}\label{sec:entitlement-justice}
 \input{sections/entitlement.tex}
 
-\section{Counterfactual Fairness and Entitlement}
+\section{Entitlement Fairness}\label{sec:entitlement-fairness}
 \input{sections/entitlement_fairness.tex}
 
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 \input{sections/conclusion.tex}
 
-\section*{Aknowledgements}
+\section*{Aknowledgements}\label{sec:acknowledgements}
 
 \bibliography{references}
 \end{document}
