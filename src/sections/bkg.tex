@@ -1,0 +1,197 @@
+Within this paper, we will restrict our attention to cases where the decision
+problem under scrutiny can be formulated using the following very simple
+formalism. Some entity (algorithmic or otherwise) possesses a finite amount of
+resource $X$, and must allocate it among a set of agents
+$A = \{a_1, a_2, \ldots, a_n\}$. Considerable work is done here by the term 
+\textit{resource}, which we will define simply as an element which may be 
+distributed among agents. Traditional examples include money and admissions,
+but we will also consider more abstract resources such as representation or
+influence. Following \cite{Kuppler_2021}, we will define a \textit{distribution
+rule} as a statement in the form: Allocate amount $R$ of resource $X$ to agent
+$a_n$ iff $X$ has attribute $Y$. Broadly speaking, the role of a theory of
+justice is now to provide a justificable and explainable $Y$ for a given
+distribution rule, while the role of an ideal algorithmic fairness measure is to
+evaluate the extent to which an algorithmic-decision maker obeys a particular
+distribution rule.
+
+Admittedly, not all problem domains in which algorithmic decision-making is
+applied can be formulated in this way~\cite{Green_2017}. For example,
+applications of AI in natural language translation may not be easily formulated
+in terms of resource allocation, but the reader may still be concerned with the
+perpetuation of social biases through the decisions it makes in translation.
+While these cases are significant, they do not fall simply within the domain of
+distributive justice, and so we will not consider them here.
+
+\subsection{Algorithmic Fairness Measures}\label{sec:fairness-measures}
+In the canonical presentation of algorithmic fairness, we are given a population
+of agents $A = \{a_1, a_2, \ldots, a_n\}$ with observed covariates $X$ drawn
+from some distribution $P(X)$. We are told that some set $A$ of protected 
+attributes may be derived from $X$. Each agent $a_n$ in the population is
+subjected to a binary decision according to some decision rule
+$d: X \to \{0, 1\}$~\cite{CorbettDavies_2023}.
+
+In the formal setting we described above, this decision rule plays a clear role.
+There is some distribution rule which we would like to enforce in the allocation
+of resources, such that each $a_n$ receives an amount of resource $X$ according
+to some attribute $y$. The decision rule $d$ attempts to determine the
+``\textit{$y$-ness}'' of each agent $a_n$ based on the observed covariates for
+that agent $x_n$. $y$ is highly unlikely to be directly observable or
+straightforward, and we are unlikely to be able to predict it perfectly from the
+information delivered by $x_n$. The decision rule $d$ is then a function which
+imperfectly approximates the desired distribution rule, making errors at some 
+frequency. Algorithmic fairness measures presented in the literature thus may
+be seen as defining the following attributes of the decision rule $d$:
+\begin{itemize}
+    \item The relationship of the attribute $y$ to the set of protected
+          characteristics $A$
+    \item The method of detection of errors made by a decision rule $d$
+\end{itemize}
+
+Some of the most commonly discussed measures in the literature are presented
+below together with their critiques leveraging this lens. For a more exhaustive
+list of measures, see~\cite{CorbettDavies_2023}.
+
+\begin{definition} Demographic Parity — A decision rule $d$ is said to satisfy
+demographic parity if the probability of receiving a positive decision is
+independent of the protected attributes $A$~\cite{Dwork_2012}. \end{definition}
+
+Demographic parity asserts the condition that the probability of predicting that
+an agent having the attribute $y$ cannot depend on the protected attributes $A$. 
+When using demographic parity as a fairness measure, therefore we measure
+errors made by the decision rule $d$ by the extent to which the probability of
+receiving a positive decision depends on the protected attributes in $A$.
+
+From this presentation it is easy to see multiple ways in which demographic
+parity may be unsatisfactory. For example, our decision rule $d$ is allowed to
+be very poor at predicting whether agents have the attribute $y$, so long as it
+is equally poor across all protected attributes. Mistakes in predicting $y$ are
+not penalized, and so could be patterned in a way that is harmful to some
+protected groups. For example, $d$ could produce many false positive predictions
+of $y$ for one group and many false negative predictions for another as long as
+the resulting distribution is balanced correctly~\cite{Barocas_2017}.
+
+\begin{definition}
+    Equalized Odds — A decision rule $d$ satisfies equalized odds if the
+    true positive rate and false positive rate do not vary with respect to
+    $A$~\cite{Hardt_2016}.
+\end{definition}
+
+Equalized odds may be thought of as again positing that attribute $y$ may not
+depend on $A$, but it goes further to say that errors in our prediction of $y$
+— specifically false positives—must be distributed uniformly across groups. 
+We thus measure errors as dependencies between the false positive rate and
+$A$.
+
+Equalized odds is often critiqued for struggling to deal with unequal base rates
+between groups. Consider the following example from criminal justice. We have a 
+distribution rule which says to allocate a parole to a prisoner if they are very
+unlikely to recidivate. Due to a history of discriminatory practices and social
+marginalization, black prisoners have a base rate of recidivism much higher than
+white defendants~\cite{CrimeJustice_2023}. As a result, allocating a parole to 
+a white prisoner has a base line lower likelihood of being a false positive. 
+Therefore, when we perform post-processing of our data to balance false positive
+rates, we may actually \textit{add} false positives to the white portion of the
+dataset, resulting in an increase in the number of white prisoners receiving
+parole.
+
+\begin{definition}
+    Counterfactual Fairness — A decision rule $d$ satisfies counterfactual
+    fairness if protected attributes from $A$ do not play a causal role in its
+    output~\cite{Kusner_2018}.
+\end{definition}
+
+Counterfactual fairness posits a different criteria about $y$ than demographic
+parity or equalized odds. Rather than mandating that $y$ should be independent
+from features in $A$, counterfactual fairness mandates that attributes in $A$ 
+cannot be causes of $y$. We therefore measure errors in the prediction of $y$ by
+detecting causal links between $A$ and the prediction of $y$.
+
+Counterfactual fairness is often critiqued based on the difficulty and potential
+subjectivity of detecting causal links between variables. Recent work on the 
+social construction of demographic variables reveals that causal modeling may 
+have an inherently normative basis~\cite{Hu_Forthcoming}, and even if these
+issues are set aside, the computational expense of causal discovery can create
+issues of practicality.
+
+This discussion of dominant algorithmic fairness measures and their shortcomings
+motivates further discussion of theories of distributive justice. To what extent
+do the features of $y$ posited by these measures align with the rules of
+distribution dictated by theories of algorithmic justice? Is it valid to say 
+that these measures enforce distributive justice in any way? And it is possible
+to address or understand their shortcomings in terms of the philosophy of 
+distributive justice?
+
+\subsection{Theories of Distributive Justice}
+
+The role of a theory of distributive justice is to provide the rules of
+distribution that define fairness in society. Specification of these rules is
+exactly the process of defining a $y$ in the formalism we have presented.
+Several conventional theories of distributive justice have been proposed in the
+literature, and we will discuss a few of them here. For a more exhaustive list
+of theories presented in this framework, see~\cite{Kuppler_2021}
+
+\begin{definition}
+    Egalitarianism — Egalitarianism posits that all individuals should receive
+    an equal share of resources~\cite{Rawls_1971}.
+\end{definition}
+
+Equally restated in the formalism we have presented, egalitarianism posits that
+amount $R$ of resource $X$ should be allocated to agent $a_n$ if and only if
+the doing so minimizes the overall inequality across the population. Thus in
+this case, $y$ is the property of \textit{lacking} good $X$ relative to the
+population.
+
+Note that the precise currency of egalitarianism is unclear. For example,
+allocating money to an individual who is lacking in food only indirectly impacts
+the stock of concern, but it is clear that doing so will still reduce the
+overall inequality of the population. Clearly in this case we could shift our 
+currency to general wealth or utility, but the choice of currency is not
+immediately obvious, nor does it seem generally possible to define a currency
+which is globally applicable~\cite{Binns_2018}.
+
+\begin{definition}
+    Sufficientarianism — Sufficientarianism posits that all individuals should
+    receive a share of resources sufficient to meet some threshold level of
+    well-being~\cite{Sen_1979}.
+\end{definition}
+
+Sufficientarianism is a theory of distributive justice which posits that the
+distribution rule should be such that all agents receive an amount of resource
+$X$ which is sufficient to meet some threshold level of well-being. Thus $y$ is
+defined as the property of \textit{needing} good $X$. Note that what constitutes
+a threshold level of well-being and what goods are required for it is not
+immediately clear, and that under conditions of scarcity it may be impossible to
+meet the threshold for all agents.
+
+\begin{definition}
+    Desert — Moral desert is the idea that individuals should receive resources
+    in proportion to their moral worth as measured by some metric of
+    merit~\cite{Pojman_1997}.
+\end{definition}
+
+Theories of desert therefore set $y$ to be some form of moral merit, and the
+distribution rule is such that agents receive $X$ if they deserve it according
+to their merit. Theories of desert have been critiqued for being highly
+subjective and difficult to measure. Any attempt to craft a metric for moral
+merit is likely to be highly controversial and may be subject to manipulation by
+those in power. 
+
+This formulation lays bare the issues with considering algorithmic fairness
+measures as enforcing distributive justice. In most cases it is unclear how the
+features of $y$ posited by these measures align with the rules of distribution
+dictated by theories of distributive justice. For example, demographic parity
+may appear to enforce some form of egalitarianism by ensuring that the output
+distribution of the decision rule is equal across protected groups. However,
+this is a failure in two ways. Firstly, egalitarianism mandates that allocations
+be balanced across all individuals, not across groups. Secondly, our measurement
+of errors in the decision rule $d$ is based solely on the distribution enforced
+by $d$, not on the actual distribution of resources in society. In cases with a 
+large pre-existing disparity, enforcing parity might be thought of as preventing
+the widening of the gap, but not as fully enforcing egalitarian justice.
+
+Similar complaints may be made about the other fairness measures presented here,
+and it is clear that the relationship between algorithmic fairness and
+distributive justice is not straightforward. This motivates further discussion
+of the relationship between these two fields, and the potential for a more
+cautious and nuanced approach to the application of algorithmic fairness
+measures.
