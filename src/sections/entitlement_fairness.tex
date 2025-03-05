@@ -1,19 +1,19 @@
 In the previous sections, we have shown the difficulty of connecting the
 philosophy of distributive justice to the practice of algorithmic fairness. 
 Despite assertions in the literature that specific fairness measures relate to
-egalitarianism, we have shown that connections don't hold up under scrutiny. This
-difficulty warrants a reevaluation of the philosophical foundations of
-algorithmic fairness, and we propose that entitlement justice is a more apt
-framework for understanding the goals of fairness in algorithmic decision-making
-systems.
+types of egalitarianism, we have shown that connections don't hold up under
+scrutiny. This difficulty warrants a reevaluation of the philosophical
+foundations of algorithmic fairness, and we propose that entitlement justice is
+a more apt framework for understanding the goals of fairness in algorithmic
+decision-making systems.
 
-On an entitlement fairness account, an algorithmic decision-maker become a
+On an entitlement fairness account, an algorithmic decision-maker becomes a
 property rights oracle. The system at large is responsible for determining which
 individuals are entitled to a particular property. This requires two steps:
 first, we must know all of the factors which are morally relevant to property
-rights in the domain in question and be able to asign values to those factors
+rights in the domain in question and be able to assign values to those factors
 for each individual in a population. Some of these factors we may be able to 
-simple observe or measure directly, while many of these factors will have to be
+simply observe or measure directly, while many of these factors will have to be
 predicted algorithmically. For example, in the case of criminal parole,
 likelihood of recidivism is clearly relevant to one's entitlement to parole, but
 is something which must be predicted or learned from data. Second, we must
@@ -21,54 +21,47 @@ implement an entitlement rule which determines whether or not an individual is
 entitled to a property based on the values of the morally relevant factors that
 we've predicted. Note that our decision-maker has now been split into two
 explicit components with very specific purposes. Following reasoning presented
-in \cite{Kuppler_2021}, refer to these steps as the prediction step and the
-decision step, respectively. The role of each component in the decision-making
-process now clearly implies the metric which should be used to evaluate the
-decision-maker. 
+in~\cite{Kuppler_2021}, refer to these steps as the prediction step and the
+decision step, respectively. We now have a pipeline which appears as follows:
 
-The first component is a set of predictors which need to predict
-certain features of individuals in a population. In the case of these predictors
-we are only interested in having as little prediction error as possible. We need
-the predictors to reflect the true properties of the individual in question so
-that we can use the factual information about them to make a decision about
-their property rights. Of course, a predictor will always be noisy, meaning
-there will be error in the prediction of the individual's properties. If this
-error is not distributed equally across the population, then we will
-consistently learn false information about a particular group which will lead to
-systemic errors in predicting property rights across groups. Therefore, each
-predictor must be evaluated using equalized odds fairness.
+\begin{center}
+    \includegraphics[scale=0.5]{figs/fig2.png}\\
+    \textbf{Fig. 2: Algorithmic Decision-Making Pipeline}
+\end{center}
 
-In step two, we implement an entitlement rule which determines whether or not
-an individual is entitled to a property based on the values of the morally
-relevant factors that we've predicted. We find ourselves in the fortunate
-condition that we have identified and predicted morally justified features to be
-relevant to the property rights in question. Therefore, our measurement of the
-decision step simply needs to ensure that \emph{only} those features which are
-morally relevant to the property rights in question and were predicted in the
-prediction step are used in the decision step. In other words, given the set of
-morally relevant features, we need to ensure that the decision step is
-independent of other features which should not factor into the property rights
-decision. Therefore we must evaluate the decision step using counterfactual
-fairness.
+In order to implement this pipeline, one must have a clear understanding of the
+property right in question, and the morally relevant factors which determine
+entitlement to that property. Note that these factors may be related to
+sensitive social categories. For example, if I am determining property rights to
+land, ancestral heritage may be a morally relevant factor. Then we know that
+protected attributes are allowed to play a role in the prediction step, so long
+as they are morally relevant to the property right in question and the moral
+reasoning behind their inclusion is made explicit. In the decision step, however,
+these attributes must be excluded, and the decision must be made based only on
+the predicted morally relevant factors, since only these are the features which
+have been shown to be relevant to the property right in question.
 
-In summary, an algorithmic decision maker implements entitlement fairness if it
-does the following:
-\begin{itemize}
-    \item Given the set of covariates $X$, the decision maker algorithmically
-          predicts the values of a morally justified set of features $F$ for each
-          individual in a population.
-    \item Each predictor used in the prediction step satisfies equalized odds
-          fairness.
-    \item Based solely on the information in $F$, the decision step implements
-          an entitlement rule which determines whether or not an individual is
-          entitled to a property.
-    \item The decision step satisfies a form of counterfactual fairness under
-          which the decision step is independent of features not in $F$.
-\end{itemize}
+Therefore, measuring the fairness of an algorithmic decision-making system under
+the entitlement justice framework means that we need to require that the
+protected characteristics of an individual act on the decision \textit{only}
+through those features which are morally relevant to the property right in
+question. If we can ensure this, then we have a system in which sensitive
+characteristics of an individual are used to assess their entitlement to a
+particular property in only ways which are explicitly morally justified, and 
+otherwise do not play a role in the decision-making process. This notion is
+precisely formulated as the following specific form of counterfactual fairness:
 
-In the following sections, we will dive further into the connection of this 
-framework to the philosophy of entitlement fairness and show the benefits of
-adopting this framework for algorithmic fairness.
+\begin{definition}
+    Given a set of covariates $X$, a set of protected attributes $A$, a set of
+    morally justified derived features $D$, and a classification function $f$,
+    a decision-making system satisfies \textbf{entitlement fairness} iff 
+    \[P[f(X) = 1 | D=d, do(A = a)] = P[f(x) = 1 | D=d, do(A=b)]\;\forall a, b \in A\]
+\end{definition}
+
+In other words, the morally justified feature set $D$ acts as a mediator between
+the protected attributes $A$ and the decision $f(X)$, and no further influence
+of $A$ on $f(x)$ is allowed. In the following discussion, we will show the
+advantages of adopting this perspective on algorithmic fairness.
 
 \subsection{End-state vs. Historical Fairness}
 
@@ -213,19 +206,25 @@ that the goals of fairness can be achieved in practice.
     must identify and \emph{morally justify} the features of an individual which
     are relevant to their entitlement to the property in question. This set of
     attributes will vary widely depending on the property right in question.
-    \item \textbf{Implement fair predictors for the morally relevant features}.
+    \item \textbf{Implement predictors for the morally relevant features}.
     For each of the morally relevant features identified in the previous step,
     implement a predictor which predicts the value of that feature for each
-    individual in the population. Each predictor must satisfy equalized odds
-    fairness.
+    individual in the population. These predictors may be simple or complex,
+    depending on the nature of the feature and the data available. The important
+    thing is that the predictors must be able to predict the morally relevant
+    features with some degree of accuracy.
     \item \textbf{Implement a fair entitlement rule}. Use the features predicted
     in step 3 to implement an entitlement rule which determines whether or not
     an individual is entitled to the property in question. There are many
     options for implementing an entitlement rule. One may implement something as
     straightforward as a decision tree or linear model based on the predicted
     features, or one may implement a less transparent model such as a neural
-    network which learns the entitlement rule from some data. In any case, the
-    entitlement rule must satisfy counterfactual fairness as described above.
+    network which learns the entitlement rule from some data.
+    \item \textbf{Verify the fairness of the system}. Once the system has been
+    implemented, it is important to verify that the system is fair. This may
+    involve testing the system on a holdout dataset, or using a fairness measure
+    to verify that the system is fair. The fairness measure should be based on
+    the definition of entitlement fairness given above.
     \item \textbf{Publish moral reasoning and aknowledge limitations}. The
     final step in the framework is to publish the moral reasoning behind the
     morally relevant features and the entitlement rule. This will allow for
