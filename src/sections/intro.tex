@@ -3,58 +3,66 @@
 The rise of algorithmic decision making in the public sector has caused
 significant public concern. Algorithms increasingly make decisions that affect
 individuals' lives, from determining creditworthiness to predicting criminal 
-recidivism, and the public has grown cautious of their potential to perpetuate 
-existing social inequalities. A 2018 study showed that 58\% of Americans
-believe that algorithms will always have some level of bias~\cite{Smith_2018}, 
-and as documented in the famed COMPAS case, these fears are not
-unfounded~\cite{Angwin_2016}.
+recidivism, and the public has grown cautious of their potential to perpetuate
+and exacerbate existing social inequalities. A 2018 study showed that 58\% of
+Americans believe that algorithms will always have some level of
+bias~\citep{Smith_2018}, and as documented in the famed COMPAS case, these fears
+are not unfounded~\citep{Angwin_2016}.
 
 In response to these concerns, a growing body of research has focused on
 developing algorithmic fairness measures to evaluate and mitigate the biases
 in algorithmic decision making. A large number of different measures have been
-proposed~\cite{CorbettDavies_2023} and applied to a wide range of problems.
+proposed~\citep{CorbettDavies_2023} and applied to a wide range of problems.
 However, many questions remain unanswered about the theoretical foundations of
 these measures and their relationship to broader sociotechnical systems. In
 particular, the relationship of these measures to philosophically rigorous
 definitions of justice is not well understood.
 
-Most recently,~\cite{Binns_2018},~\cite{Hertweck_2024}, and~\cite{Kuppler_2021}
-have explored this relationship, attempting to make sense of the theoretical
-foundations of algorithmic fairness measures through the lens of distributive
-theories of justice in political philosophy. A distributive theory of justice is
-a normative framework that provides principles and criteria for allocating
-resources, benefits, and burdens among individuals or groups within a society,
-with the aim of achieving a just and fair distribution. At a first glance, it
-is appealing to compare such a scheme to the problem of algorithmic fairness —
-encode the constraints on the allocation into the fairness measure, and
-optimize for the measure to achieve a fair allocation. However, this approach
-demands further investigation. How do we encode the constraints of a
-distributive theory of justice into a fairness measure? How well do the measures
-in the literature capture competing accounts of distributive justice?
+In an effort to develop the theoretical foundations of algorithmic fairness,
+researchers have turned to the field of distributive justice for guidance.
+A distributive theory of justice is a normative framework that provides
+principles and criteria for allocating benefits and burdens among individuals or
+groups within a society, with the aim of achieving a just and fair distribution.
+The field can be seen as polarized along an axis from liberal egalitarianism to
+entitlement theory. Under the liberal view, commonly associated with John Rawls, 
+the chief objective of justice is to equalize allocation across all individuals
+in a population. In contrast, the entitlement view, associated with Robert
+Nozick, emphasizes the importance of individual property rights and the freedom
+to exchange goods and services without interference. 
 
-The papers mentioned above all argue that existing fairness metrics implement
-different forms of egalitarian justice, primarily luck egalitarianism. In this
-paper, we will carefully examine the relationship between algorithmic fairness
-and distributive justice, and argue that the existing literature is too narrow
-its scope. We will argue that algorithmic fairness should be understood through
-the lens of entitlement justice, a distributive theory of justice that has been
-largely overlooked in the literature. We will argue that entitlement theory,
-under which justice is rooted in the idea of respecting individuals'
-property rights, offers a more nuanced and context-sensitive understanding of
-algorithmic fariness. We argue that by conceptualizing the algorithmic fairness
-problem through the lens of entitlement justice, system designers are forced to
-clearly present the inherent normative reasoning and values endorsed by their
-systems.
+Recent papers (~\citep{Binns_2018},~\citep{Hertweck_2024}, and~\citep{Kuppler_2021})
+have explored the relationship between algorithmic fairness and theories of
+distributive justice. Efforts have largely focused on grounding fairness
+measures in liberal justice, while theories of libertarian justice have been
+largely overlooked in the literature. Given that libertarian justice is a
+prominent area of inquiry in political philosophy that addresses a broad range
+of concerns not covered in liberal justice, it is worth investigating how to
+close this gap. In particular, how do the concerns of libertarian justice appear
+in algorithmic decision making? How can these concerns be encoded by algorithmic
+fairness measures? And what do we stand to lose or gain by conceptualizing
+algorithmic fairness through the libertarian lens?
+
+In this paper, we will carefully examine the relationship between algorithmic
+fairness and libertarian justice, and develop a formalism that lays clear the
+relationship between the two. We will demonstrate that libertarian justice can
+be encoded within a measure of algorithmic fairness, and show that doing show
+offers a nuanced and context-sensitive means of understanding algorithmic
+fairness. We will argue that by conceptualizing algorithmic fairness through
+libertarian justice, system designers are made to clearly present the inherent
+normative reasoning and values embedded in their systems.
+
+\todo{Sharped objectives in previous paragraph}
 
 The rest of this paper is organized as follows. In Section~\ref{sec:background},
 we provide an overview of the existing literature on algorithmic fairness and
-distributive justice. We draw on the formalism from~\cite{Kuppler_2021}
-and~\cite{CorbettDavies_2023} to create a unified model for understanding
+distributive justice. We draw on the formalism from~\citep{Kuppler_2021}
+and~\citep{CorbettDavies_2023} to create a unified model for understanding
 algorithmic fairness and distributive justice consistently with each other. 
 In Section~\ref{sec:entitlement-justice}, we introduce the concept of
-entitlement justice and discuss its historical development. We confront the 
-traditional objections to entitlement theory and show how they can be overcome
-in the context of algorithmic decision making. In
+entitlement justice and discuss its historical development. We contrast
+entitlement theory with liberal egalitarianism to identify the the critical
+elements of entitlement which must be represented in account of algorithmic
+fairness, and confront the traditional objections to entitlement theory. In
 Section~\ref{sec:entitlement-fairness}, we propose a new framework for
 understanding algorithmic fairness through the lens of entitlement justice. We
 analyze the implications of this framework for existing algorithmic fairness

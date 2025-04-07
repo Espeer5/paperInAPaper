@@ -1,0 +1,266 @@
+In the previous sections, we have shown the difficulty of connecting the
+philosophy of distributive justice to the practice of algorithmic fairness. 
+Despite assertions in the literature that specific fairness measures relate to
+types of egalitarianism, we have shown that connections don't hold up under
+scrutiny. This difficulty warrants a reevaluation of the philosophical
+foundations of algorithmic fairness, and we propose that entitlement justice is
+a more apt framework for understanding the goals of fairness in algorithmic
+decision-making systems.
+
+On an entitlement fairness account, an algorithmic decision-maker becomes a
+property rights oracle. The system at large is responsible for determining which
+individuals are entitled to a particular property. This requires two steps:
+first, we must know all of the factors which are morally relevant to property
+rights in the domain in question and be able to assign values to those factors
+for each individual in a population. Some of these factors we may be able to 
+simply observe or measure directly, while many of these factors will have to be
+predicted algorithmically. For example, in the case of criminal parole,
+likelihood of recidivism is clearly relevant to one's entitlement to parole, but
+is something which must be predicted or learned from data. Second, we must
+implement an entitlement rule which determines whether or not an individual is
+entitled to a property based on the values of the morally relevant factors that
+we've predicted. Note that our decision-maker has now been split into two
+explicit components with very specific purposes. Following reasoning presented
+in~\cite{Kuppler_2021}, refer to these steps as the prediction step and the
+decision step, respectively. We now have a pipeline which appears as follows:
+
+\begin{center}
+    \includegraphics[scale=0.5]{figs/fig2.png}\\
+    \textbf{Fig. 2: Algorithmic Decision-Making Pipeline}
+\end{center}
+
+In order to implement this pipeline, one must have a clear understanding of the
+property right in question, and the morally relevant factors which determine
+entitlement to that property. Note that these factors may be related to
+sensitive social categories. For example, if I am determining property rights to
+land, ancestral heritage may be a morally relevant factor. Then we know that
+protected attributes are allowed to play a role in the prediction step, so long
+as they are morally relevant to the property right in question and the moral
+reasoning behind their inclusion is made explicit. In the decision step, however,
+these attributes must be excluded, and the decision must be made based only on
+the predicted morally relevant factors, since only these are the features which
+have been shown to be relevant to the property right in question.
+
+Therefore, measuring the fairness of an algorithmic decision-making system under
+the entitlement justice framework means that we need to require that the
+protected characteristics of an individual act on the decision \textit{only}
+through those features which are morally relevant to the property right in
+question. If we can ensure this, then we have a system in which sensitive
+characteristics of an individual are used to assess their entitlement to a
+particular property in only ways which are explicitly morally justified, and 
+otherwise do not play a role in the decision-making process. This notion is
+precisely formulated as the following specific form of counterfactual fairness:
+
+\begin{definition}
+    Given a set of covariates $X$, a set of protected attributes $A$, a set of
+    morally justified derived features $D$, and a classification function $f$,
+    a decision-making system satisfies \textbf{entitlement fairness} iff 
+    \[P[f(X) = 1 | D=d, do(A = a)] = P[f(x) = 1 | D=d, do(A=b)]\;\forall a, b \in A\]
+\end{definition}
+
+In other words, the morally justified feature set $D$ acts as a mediator between
+the protected attributes $A$ and the decision $f(X)$, and no further influence
+of $A$ on $f(x)$ is allowed. In the following discussion, we will show the
+advantages of adopting this perspective on algorithmic fairness.
+
+\subsection{End-state vs. Historical Fairness}
+
+Consider Nozick's distinction between end-state and historical theories of
+justice. In an end-state theory, to know if any allocation of one good to a
+person is just, we must know the broader distribution of all similar goods
+across society as a whole. This poses a major challenge to algorithmic fairness
+because it requires the decision-maker to have evolving data about individuals'
+stocks across society. This type of dataset is impossible to maintain and
+provide to the decision maker in practice. In contrast, historical theories of
+justice need only focus on the single particular good which is subject to a
+decision or allocation. While it could still be difficult to determine the full
+historical context of a good, it is at least a goal which is much more in line
+with the capabilities of an algorithmic system as we will show.
+
+In the entitlement fairness framework, the decision-maker is a property rights
+oracle. The decision-maker is responsible for determining whether or not an
+individual is entitled to a particular property. This is a historical theory of
+justice because one's entitlement to a property is determined by some
+transactional history of the property. In the case of physical goods, this sort
+of structure is obvious — a good was acquired and then passed along through
+transfers of ownership into the hands of the current owner. Algorithmic decision
+makers seldom deal with physical goods, however. Instead, they tend to deal with
+opportunities. For example, college decisions allocate the opportunity to attend
+a particular university. Loan decisions allocate the opportunity purchase a
+house, start a business, or undertake other actions which require capital on
+credit. What sort of transactional history is there for these opportunities? And
+how does it impact one's entitlement to them?
+
+In each of these cases, the transactional history is the history of opportunity
+given to the individual in question by society throughout their life. Consider
+some example cases:
+\begin{itemize}
+    \item \textbf{College Admissions} (Access to education): Equality of
+          opportunity in education is an entitlement justly acquired by each
+          individual at birth. Since each individual is entitled to equal
+          opportunity, there are no meaningful transfers of this opportunity
+          between individuals. Therefore, the relevant history is only the
+          acquisition combined with any infringements on the equality of
+          opportunity. Under an entitlement framework, an individual who has
+          been deprived of equal opportunity is entitled to rectification. Now
+          note that we are able to predict based on, say, zip code and race,
+          the extent to which an individual has been systemically deprived of
+          equal opportunity. This means that we can predict the relevant history
+          in the prediction step, and then use that information in our
+          entitlement rule, successfully implementing a historical theory of
+          justice.
+    \item \textbf{Loan Decisions} (Access to capital): Unlike education, access
+          to capital is not an automatic entitlement granted to individuals
+          equally at birth. Instead, access to capital is based on merit.
+          However, we will still employ a similar structure. An individual
+          reaches a particular level of merit, acquiring the right to access
+          capital. This merit is acquired through a history of work, education,
+          and other actions and features relevant to the domain. However, past
+          decisions about one's access to capital are certainly influenced by
+          social categories and other factors which are not relevant to merit.
+          Via some combination of income, race, and other factors, we can
+          certainly predict whether one is more likely to have been unjustly
+          deprived of access to capital, or unjustly rewarded with undeserved
+          access to capital. This means that we can predict the relevant history
+          in the prediction step, and then use that information in our
+          entitlement rule to implement a historical theory of justice.
+\end{itemize}
+
+In each of these cases, it is not trivial to implement the relevant history, and
+requires extensive moral reasoning and domain-specific knowledge. However, the
+upshot is that using the entitlement fairness framework, we are able to implement
+a historical theory of justice in algorithmic decision-making systems, while 
+implementing a truly end-state theory of justice would be impossible due to the
+required knowledge of the full distribution of goods across individuals in society.
+
+\subsection{Domain Specificity}
+
+In addition to the distinction between end-state and historical theories of
+justice, we also gain a new perspective on dmain specificity of fairness. In
+the algorithmic fairness literature, there are often broad attempts to reduce a
+multitude of fairness concerns to a single mathematical measure. However, this
+approach can reduce the visibility of the specific justice concerns of a
+particular domain, and possibly obscure the goals of fairness in that domain.
+For example, consider the COMPAS algorithm for assigning risk scores to 
+individuals in the criminal justice system. The risk scores output by COMPAS 
+are meant to represent likelihood of recidivism to inform decisions about
+bail, sentencing, and parole. A now infamous ProPublica
+article~\cite{Angwin_2016} showed that the COMPAS algorithm was biased against
+African Americans by measuring the false positive rate of the algorithm across
+racial groups. The false positive rate is clearly relevant to justice in this 
+context, given that a false positive can lead to more frequent and longer 
+incarcertations. However, Northepoint (the company which produces COMPAS)
+argued that their algorithm was fair because it had equal predictive accuracy
+across racial groups~\cite{Flores_2016}. Notice that on the entitlement fairness
+account, we would have detected the issues here — evaluation of the recidivism
+risk predictor would have revealed that it was not fair under equalized odds,
+meaning a different predictor would have been required to implement the decision
+rule. (Note that it is also highly unlikely that distributing sentences
+according to recidivism risk alone would qualify as a just rule of entitlement
+as well.)
+
+Domain specificity is also critical to the selection of $A$, the set of 
+protected attributes which should be considered in a fairness measure. In the
+algorithmic fairness literature, there is often a focus on selecting $A$ to
+represent social categories, however there may be times when a social category
+is morally relevant to a particular decision. In the case of land ownership, for
+example, the ancestral heritage of an individual may be morally relevant to 
+decisions about land allocation. In this case, it would be inappropriate to
+remove the attribute of ancestral heritage from the decision-making process.
+This effect is captured by the entitlement fairness framework. In deriving the
+set of features which must be predicted to implement the entitlement rule, we
+are forced to consider the domain-specific moral reasoning which is relevant to
+the property right in question. We then require that \emph{only} those features
+not included in this set are excluded from the decision-making process. So for
+the case of land ownership, we may include a predictor of ancestal heritage in 
+the prediction step, while still excluding race from the decision step — i.e,
+the only impact of race on the decision is through its impact on ancestral
+heritage.
+
+Entitlement justice provides a framework for understanding the domain-specific
+considerations of fairness — as we discussed above, property rights are specific
+to the type of holding in question. Designing and building a system which
+respects property rights requires a deep understanding of the domain in which
+the system will be used. Understanding the fairness of a system in terms of 
+entitlement justice therefore bakes in the domain-specific considerations of
+fairness into the design of the system.
+
+\subsection{A Framework for Entitlement Fairness}
+
+The presentation of entitlement fairness above is a high level description of
+how a system may achieve fairness. In this section, we present a framework for
+implementing entitlement fairness in algorithmic decision-making systems, so 
+that the goals of fairness can be achieved in practice.
+\begin{enumerate}
+    \item \textbf{Define the property being allocated by the decision-making
+    system}. This may be a physical good, an opportunity, a right, or some other
+    type of property. There may be multiple framings of property when studying a
+    particular problem domain. For example, in the home loan case, you may think
+    that the property being allocated is access to capital, or you may think
+    that the property being allocated is the opportunity to purchase a home.
+    Both options will carry with them different moral reasoning processes, and
+    it is important to consider one's options carefully to select the property
+    with the most significant moral concerns.
+    \item \textbf{Define the set of attributes which are morally relevant to the
+    entitlement to the property}. The implementor of the decision-making system
+    must identify and \emph{morally justify} the features of an individual which
+    are relevant to their entitlement to the property in question. This set of
+    attributes will vary widely depending on the property right in question.
+    \item \textbf{Implement predictors for the morally relevant features}.
+    For each of the morally relevant features identified in the previous step,
+    implement a predictor which predicts the value of that feature for each
+    individual in the population. These predictors may be simple or complex,
+    depending on the nature of the feature and the data available. The important
+    thing is that the predictors must be able to predict the morally relevant
+    features with some degree of accuracy.
+    \item \textbf{Implement a fair entitlement rule}. Use the features predicted
+    in step 3 to implement an entitlement rule which determines whether or not
+    an individual is entitled to the property in question. There are many
+    options for implementing an entitlement rule. One may implement something as
+    straightforward as a decision tree or linear model based on the predicted
+    features, or one may implement a less transparent model such as a neural
+    network which learns the entitlement rule from some data.
+    \item \textbf{Verify the fairness of the system}. Once the system has been
+    implemented, it is important to verify that the system is fair. This may
+    involve testing the system on a holdout dataset, or using a fairness measure
+    to verify that the system is fair. The fairness measure should be based on
+    the definition of entitlement fairness given above.
+    \item \textbf{Publish moral reasoning and aknowledge limitations}. The
+    final step in the framework is to publish the moral reasoning behind the
+    morally relevant features and the entitlement rule. This will allow for
+    public scrutiny of the rule and the identification of any limitations in the
+    system.
+\end{enumerate}
+
+\subsection{Instrumental Algorithmic Decisions}
+
+Recall that under the entitlement fairness framework, the decision-maker is a
+property rights oracle. This means that regardless of the implementation or the
+problem domain, the outcome of the system describes whether or not an individual
+is entitled to a particular property under a system of entitlement. Returning to
+our discussion of instrumental property rights from section 3, we now observe 
+a natural limitation of algorithmic decision-makers under the entitlement
+justice framework. Since, as Sen identified, property rights must be
+instrumental, so too must the output of the decision-maker be instrumental. This
+means that the decision of algorithmic decision-makers must not be absolute.
+There must be some flexibility in the decision-making process to allow for
+the intervention on decisions based on higher priority issues in the broader
+sociotechnical system in which the decision-maker is embedded. 
+
+As an example, imagine that an algorithmic decision-maker is used to allocate
+college admissions decisions to students. The decision-maker determines that a
+particular student is entitled to admissions based on their academic merit in
+combination with, say, excellent essays and recommendations. The student has 
+gained a property right to admission. However, say the university becomes aware
+of a higher priority issue — the student in question has serious disciplinary
+issues that they feel would place other students at their university in danger.
+The other students' rights to safety are more important than the student's
+property right, and therefore the university must be able to intervene and deny
+the student admission.
+
+This type of intervention on the outputs of algorithmic decision-makers is often
+advocated for in the literature on socio-technical systems, and is considered to
+be a common sense measure, but critically, by considering the entitlement
+approach to algorithmic fairness, we see that this intervention emerges as a
+moral imperative, not just a pragmatic one. This is a significant benefit of
+the entitlement justice interpretation of algorithmic fairness.
