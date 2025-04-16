@@ -6,7 +6,7 @@ property rights. Therefore the task of a decision-maker within our decision
 problem is clear — the decision-maker becomes a \emph{property rights oracle}.
 Given a resource and information about a population of individuals, the job of
 the decision-maker is to determine which individuals hold property rights over
-the resource. The role of fariness is thus a bit different than under other
+the resource. The role of fairness is thus a bit different than under other
 theories of justice, because we do not start from the assumption of any sort of
 equality across our population. What type of assumption should we start with 
 instead? To understand this, we will analyze the points of contrast we have
@@ -38,7 +38,7 @@ students from race A subject to the same rules of acquisition? Drawing on the
 framework of the Lockean proviso, given that two students, one from each race,
 have expended equal effort in their applications and studies, are the values
 endowed in their applications treated as equal? It is evident that to encode
-entitlement fairness, we cannot simply measure the ouputs of an algorithm, but
+entitlement fairness, we cannot simply measure the outputs of an algorithm, but
 rather must analyze the treatment of protected features of individuals within
 the algorithm itself.
 
@@ -53,7 +53,7 @@ are relevant to the process of determining property rights. These features will
 generally not be simple demographic features or features encoded in the input
 covariates in a straightforward way, but rather will be a set of more nuanced
 features that must be predicted on the input data by a complicated
-high-deminsional model. For example, in the case of college admissions you may
+high-dimensional model. For example, in the case of college admissions you may
 want to predict a feature like ``cultural fit'' which will be difficult to
 extract. These features can be sorted into two broad categories:
 \begin{itemize}
@@ -99,7 +99,7 @@ those computed features, in isolation from the full input data to the algorithm.
 This may seem to stand in stark contrast to the way that many machine learning
 algorithms are currently developed. For example, in a typical supervised
 learning setting, a model is trained to map a set of inputs to a set of outputs
-according to a high-dimensions loss funtion, with little regard for the
+according to a high-dimensions loss function, with little regard for the
 manner in which the inputs are processed. However, the internal structure of
 neural networks and other machine learning models gives rise to a set of
 features computed by the model, constituting a lower-dimensional representation
@@ -129,11 +129,11 @@ are certainly relevant to the entitlement
     access to advanced classes and tutoring resources. Effort and commitment
     demonstrate a greater value endowed into an application, and therefore a
     higher degree of entitlement.
-    \item Finally, we might also want to consider a studen't cultural fit and
+    \item Finally, we might also want to consider a student's cultural fit and
     addition to the campus community. This feature reflects a student's
     entitlement on the basis of more than just academic merit — a student who
     provides cultural value to a university provides similar, though reduced
-    value to the univerisity as a student who provides academic value, and
+    value to the university as a student who provides academic value, and
     therefore has a similar, though lesser, entitlement.
 \end{itemize}
 An algorithm meant to implement entitlement fairness in college admissions
@@ -157,7 +157,7 @@ about this on an individual basis — if for just one person I value their
 self-ownership less than another, I have failed to respect their property 
 rights. As a result, it seems clear that the appropriate way to ensure that 
 predictors of positive entitlement features are fair is to ensure that they
-satisfy counterfactual fairness. Holding fixed those covariatates of an
+satisfy counterfactual fairness. Holding fixed those covariates of an
 individual which give rise to the positive entitlement feature, we must ensure
 that the predictor outputs the same value regardless of the individual's other
 features.
@@ -170,16 +170,34 @@ entrance exam scores that they include in their application, they are attempting
 a coercive act that violates the rights of other students who are applying
 honestly and in doing so, they forfeit their ability to gain entitlement over
 admissions. In this case, our chief fairness concern is with errors in the
-predictor. Wrongful accusations of negative features result in the depriivation
-of one's property rights and therefore must be avoided. Similarly, mistakenly
-identifying an individual as not having a negative feature results in the 
-unjust deprivation of someone else's property rights in the population. It is a
-property of algorithmic predictors that false positives and false negatives will
-occur, but critically, this risk should be distributed evenly across all persons,
-otherwise we will violate justice in acquisition, which, in Nozick's formulation,
-demands that all persons have opportunity to acquire holdings. As a result,
-we must ensure that the predictors of negative entitlement features balance 
-false positive and false negative rates across groups.
+predictor. Wrongful accusations of negative features caused by false positives
+in the negative feature predictor result in the deprivation of one's property
+rights and therefore must be avoided. Similarly, false negatives in the
+predictor result in the wrongful granting of property rights to individuals who
+have forfeited them, to the exclusion of others who are more entitled.
+
+Given it is not possible to eliminate all errors in the predictor, we must 
+differentiate between the two types of errors. False positives in the predictor
+result in wrongful accusations and therefore wrongful deprivation, but these 
+cases may be fixed through the process of rectification in accordance with 
+entitlement theory. In other words, if a negative predictor accuses an
+individual of some negative feature, say cheating on a test, that individual 
+must be given the opportunity to defend themselves. If they are able to prove 
+their innocence, then the initial allocation must be rectified, and the
+individual should receive the property right they were entitled to had they not
+been flagged for cheating. In contrast, false negatives in the predictor result
+in property deprivation in a way that is much more difficult to rectify. If we
+allocate admissions to a student who has cheated on their application and we 
+fail to catch them, we won't know that we have made a mistake, and the student
+who should have gotten in in their place similarly won't know or be able to
+challenge the relevant decision. As a result, we must be much more careful about
+false negatives in the predictor of negative entitlement features than false 
+positives. This culminates in two results. Firstly, if an individual is denied
+an allocation on the basis of a negative entitlement feature, they must be given
+the opportunity to defend themselves in accordance with the principle of
+rectification. Secondly, the predictor of negative entitlement features must be
+as accurate as possible according to a weighted loss function that penalizes false
+negatives more heavily than false positives. 
 
 \subsection{Entitlement Fairness and Redistribution}
 

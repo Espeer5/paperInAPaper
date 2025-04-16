@@ -5,7 +5,9 @@ generating coherent and contextually relevant text across a wide range of
 domains. We selected this model for its ability to generate high-quality text
 and its general-purpose nature, which makes it suitable for a wide range of
 writing tasks, as well as for its open source nature, which reflects our
-commitment to transparency and reproducibility.
+commitment to transparency and reproducibility. While models like GPT-4o are 
+continuously updated and improved in inscrutable ways, Llama-2-7b serves as a
+stable fixed-point for our investigation.
 
 We engaged with the Llama-2-7b model (henceforth referred to as Llama) using a
 web-hosted API called Llama-api (\url{https://www.llama-api.com/}). This API
@@ -52,8 +54,56 @@ Llama was presented with the role of a reviewer of the paper, providing feedback
 on the argumentation and writing. In the third thread, Llama was not prompted
 with any particular role, but was simply continually asked to explain particular
 arguments or concepts from the literature with appropriate citations. Henceforth
-we will refer to these roles as the coaauthor, reviewer, and explainer roles. 
+we will refer to these roles as the coauthor, reviewer, and explainer roles. 
 Each of these roles was used throughout the research and writing process, with
 the exception of the reviewer role which was used only during revision. The full
 logs of interactions with the model including which context memory was used in
 each interaction are available in~\ref{sec:appendixI}.
+
+Co-authorship is a relationship which can take on many forms depending on the
+nature of the collaboration. In this case, we were interested in exploring the
+extent to which llama could contribute substantive and original content. This
+goal determined the nature of the interactions with Llama, which were designed
+to elicit original ideas and argumentation from the model. Simply asking the
+model to write the paper or to produce large sections of the text would not have
+been a useful approach — anyone who has asked an LLM to do so is aware that the
+results are lacking in depth or originality. Instead, in each of the five tasks
+of the research process, we engaged Llama in a structured dialogues that
+contributed to the development of the paper. The structure of this dialogue was
+inspired by the Socratic method, and proceeded in a set of steps:
+\begin{enumerate}
+    \item Provide Llama with the relevant background knowledge to the discussion
+          through the context memory mechanism, pasting relevant sections of
+          text, or asking Llama to summarize relevant arguments to add them to
+          the context memory. For example, asking ``Please summarize the paper
+          `Procedural Versus Substantive Justice: Rawls and Nozick' by David Lewis
+          Schaefer'' will add a (Llama generated) summary of the paper to the context memory.
+    \item Ask Llama a fully open-ended question about the topic at hand. For
+          example, ``Tell me about how these fairness measures may emphasize
+          distributive concepts of justice?''
+    \item Pick out interesting aspects of Llama's response, and ask for more
+          detail. For example, ``I found interesting what you said about
+          counterfactual measures of algorithmic fairness. How could they be
+          considered to emphasize individualized justice in a way that touches
+          on entitlement?'' Push on these responses until Llama is unable to
+          provide more detail in a coherent way. ``I'm missing some of your
+          ideas. In entitlement justice, we focus on whether individuals who
+          acquire holdings are entitled to those holdings. Can you explain how
+          counterfactual measures of justice show this feature?''
+    \item Inject some of your own thoughts into the conversation and ask Llama 
+          to respond to them and incorporate them into its own analysis. ``If we
+          want to say that someone is entitled to their college admissions, we
+          need to say it is their property which is being taken away if they are
+          denied admissions. This means that admission is a property acquired
+          through work before applying. How should we defend this perspective?''
+\end{enumerate}
+
+This dialogue structure is meant to do three things. Firstly, provide Llama with
+a basic set of text to pull structures from and hopefully build on. Secondly,
+try to draw out original ideas from Llama by really pushing it to do more than 
+spit out responses to in-dataset prompts by asking for more details and
+explanations than would be found in the training data. Thirdly, to provide some
+original text to Llama from outside of the training set to help it build on and
+hopefully produce original ideas. In a way the goal was to cause Llama to 
+``hallucinate'' original ideas by pushing it to build on its own responses and
+to build on original text provided by the user.
