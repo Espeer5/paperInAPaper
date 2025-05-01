@@ -1,38 +1,61 @@
 The majority of research journals now provide policies for the use of large
-language models (LLMs) as academic writing. In Nature journals, for example, ``Large Language Models do not
-satisfy our authorship criteria. Notably, an attribution of authorship carries 
-with it accountability for the work, which cannot be effectively applied to
-LLMs.'' In the Cambridge Press, ``AI does not meet the Cambridge requirements
-for authorship, given the need for accountability.'' The chief concern among
-these policies appears to be responsibility. Who should the journal turn to when
-a mistake is discovered in a paper? Who is the owner and originator of the ideas
-presented? Who should be legally liable for the content of the paper? The
-policies are clear that human authors alone must take full responsibility for the
-content of their papers, and to that end, LLMs cannot be considered coauthors.
-This is a reasonable provision for ensuring accountability — how would one hold
-an LLM accountable for an error in writing? — but it also has the effect that
-\emph{should} an LLM produce any original ideas that make it into a published
-paper, those ideas will not be attributed to the LLM but to the human authors,
-which represents a potential ethical dilemma if we find LLMs capable of
-contributing novel ideas and argumentation. This of course raises the question
-of whether LLMs are capable of doing so and to what extent.
+language models (LLMs) in academic writing. In the Nature journals, for example,
+``Large Language Models do not satisfy our authorship criteria. Notably, an
+attribution of authorship carries with it accountability for the work, which
+cannot be effectively applied to LLMs.'' For Cambridge Press, ``AI does not meet
+the Cambridge requirements for authorship, given the need for accountability.''
+The chief concern among these policies appears to be responsibility. Who should
+the journal turn to when a mistake is discovered in a paper? Who is the owner
+and originator of the ideas presented? Who should be legally liable for the
+content of the paper? 
 
-The common role LLMs hinted at by these policies is as a copy-editor or
+The policies are clear that human authors alone must take
+full responsibility for the content of their papers, and to that end, LLMs
+cannot be considered coauthors. The need for accountability goes beyond concerns
+about liability for errors in writing, however, The policies also reflect a
+concern about the ownership of ideas and plagiarism. LLMs are trained on vast 
+amounts of text, and it is not always clear how to attribute information they
+produce. An LLM may produce information that is similar or identical to text in
+its training data without a citation, and if this text is included in a paper,
+it constitutes plagiarism. The emphasis on accountability in these policies
+implies that in this situation, the human authors of the paper would be held
+liable for the plagiarism, even if they were unaware of it.
+
+These policies may protect journals from liability in the case of these 
+plagiarism concerns, but they also have the effect that \emph{should} an LLM
+produce any original ideas that make it into a published paper, those ideas will
+not be attributed to the LLM but to the human authors, which represents an
+ethical dilemma if we find LLMs capable of contributing novel ideas and
+argumentation. From the wording of the current journal policies mentioned above,
+it is unclear whether or not this usage of LLMs is permissible for papers
+submitted to these journals. In cases where ideas truly originate from LLM
+outputs, the legal ownership of the ideas is not clear, and is likely to be
+disputed in the courts by the companies that own the LLMs. This of course raises
+the question of whether LLMs are capable of producing original ideas and
+argumentation, and if so, how we should think about the ethical implications.
+
+The acceptable role for LLMs hinted at by these policies is as a copy-editor or
 proofreader, where the LLM is used to improve the clarity and coherence of
 academic writing, but not as an intellectual collaborator in the sense of 
 contributing ideas and argumentation to the writing. In this paper, we attempt
 to explore the latter role, and to investigate the extent to which a current LLM
-can serve as a coathor in the sense of contributing ideas and argumentation to
+can serve as a coauthor in the sense of contributing ideas and argumentation to
 an original philosophical research paper. We do this by using a LLM to
 collaborate on a research paper in the field of algorithmic fairness and
-distributive justice. The success of such an endeavor is difficult to measure;
+distributive justice. The goal of the project is to produce a high-quality 
+research paper that constitutes an original contribution to the field, and in
+the process, to use the LLM to its fullest potential and explore the
+capabilities and limitations of doing so. The goal of this experiment is not
+simply to see if the LLM can produce a publishable paper, but rather to explore
+the utility of using an LLM in a genuine effort to produce a high-quality 
+paper. The success of such an endeavor is difficult to measure;
 we seek to provide a qualitative assessment of the LLM's contributions to the
 paper, and to explore the implications of the growing capabilities of LLMs for
 the future of academic writing. With the ongoing and rapid development of LLMs
 in mind, this paper is not meant to be a definitive assessment of the
-capabilities of LLMs, but rather an exploration of current possibilities and
-limitations as well as a discussion of the future of academic writing in light
-of these developments.
+capabilities of LLMs, but rather an exploration of a specific model's
+capabilities and limitations as well as a discussion of the future of academic
+writing in light of these technologies.
 
 For this project, we chose as the subject of our paper the topic of algorithmic
 fairness measures and their connection to the philosophical concept of
@@ -41,17 +64,27 @@ the design and deployment of machine learning systems, as they are intended to
 ensure that these systems do not discriminate against individuals based on
 sensitive attributes. Distributive justice, on the other hand, is a central
 concept in political philosophy that concerns the fair distribution of social
-goods. Our investigation began from this vague notion of the intersection
-between algorithmic fairness measures and distributive justice, and we used the
-LLM as a collaborator to help us refine and develop our ideas from this starting
-point.
+goods. Since algorithmic fairness measures are often used to evaluate the
+fairness of algorithmic systems that make decisions about the distribution of
+resources such as bank loans or job opportunities, there is a natural connection
+between these two topics. However, the relationship between the two fields
+has not been extensively explored in the literature, and there is a lack of
+consensus in how to conceptualize the relationship between the two. Our
+investigation began from this vague notion of the intersection between
+algorithmic fairness measures and distributive justice, and we used the LLM as a
+collaborator to help us refine and develop our ideas from this starting point.
 
 This paper will be structured as follows. In Section~\ref{sec:methods}, we will
 present the methods used, including the specific LLM selected for the
 investigation and the program used to interact with it. In
 Section~\ref{sec:results}, we will present the full text of the paper produced
-in collaboration with the LLM. In \ref{sec:analysis}, we will analyze the role
-of the LLM throughout 5 task-stages of the research process: literature review,
-research question formulation, argumentation, writing, and revision. Finally,
-in Section~\ref{sec:conclusion}, we will conclude with a discussion of the
-implications of this experiment for the future of academic writing.
+in collaboration with the LLM. In Section~\ref{sec:analysis}, we will analyze
+the role of the LLM throughout 5 task-stages of the research process: literature
+review, research question formulation, argumentation, writing, and revision.
+Finally, in Section~\ref{sec:conclusion}, we will conclude with a discussion of
+the implications of this experiment for the future of academic writing. Note
+that an LLM was only used as a collaborator for the writing of the research
+paper presented in Section~\ref{sec:results}, and not for the writing of this
+introduction or any other part of the paper. The introduction, analysis, and
+discussion outside of Section~\ref{sec:results} were written entirely by the
+human author of this paper without the assistance of LLMs.

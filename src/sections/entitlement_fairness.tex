@@ -12,6 +12,18 @@ equality across our population. What type of assumption should we start with
 instead? To understand this, we will analyze the points of contrast we have
 drawn between the Rawlsian and entitlement theories of justice.
 
+First, though, we must elucidate the meaning of property as it will be used in
+this investigation. In the modern legal system, property is typically restricted
+to a somewhat narrow range of physical objects, financial assets, and 
+intellectual creations of the mind. Here, though, we will take a broader view of
+property that encompasses any resource one might be entitled to claim and which
+algorithmic decision-making might be used to allocate. This includes all of the
+resources we typically think of as property, but also includes things like
+admission to a particular college. In brief, property will refer to any finite
+desirable resource that can be allocated to an individual. This is a much
+broader understanding of property to allow the entitlement framework to be 
+applied across a wide range of decision-making domains.
+
 \subsection{Fairness in Process}
 
 One critical dimension of entitlement justice is that it governs the process
@@ -31,7 +43,7 @@ As an example, consider the case of college admissions. Under the liberal
 egalitarian approach, we mighty ask whether the output distribution of our
 algorithm is fair by asking whether it results in a roughly equal number of
 students admitted between race A and race B. Under the entitlement approach,
-however, there is no reason to ask this question — we might find that the
+however, there is no reason to ask this question—we might find that the
 students entitled to admissions are 90\% members of race B. Instead, the
 relevant questions are how race is used in the admissions process  — are
 students from race A subject to the same rules of acquisition? Drawing on the
@@ -54,7 +66,7 @@ generally not be simple demographic features or features encoded in the input
 covariates in a straightforward way, but rather will be a set of more nuanced
 features that must be predicted on the input data by a complicated
 high-dimensional model. For example, in the case of college admissions you may
-want to predict a feature like ``cultural fit'' which will be difficult to
+want to predict a feature like ``academic potential'' which will be difficult to
 extract. These features can be sorted into two broad categories:
 \begin{itemize}
     \item \emph{Positive Entitlement Features}: These are features of an
@@ -106,8 +118,8 @@ features computed by the model, constituting a lower-dimensional representation
 of the input data~\citep{Liu_2018}. The approach we suggest here can be thought
 of as a way of manually specifying a lower dimensional set of features that
 are morally relevant to implement individual fairness over as a way of
-exercising control over how the model makes decisions in order to implement
-fairness as a process.
+exercising control over \emph{how} the model makes decisions in order to
+implement fairness as a process.
 
 What would selection of these features look like in practice? Consider again the case of
 college admissions, and in particular, how decision are made about admissions of
@@ -122,19 +134,37 @@ are certainly relevant to the entitlement
     succeed in college. Likelihood of success is made relevant by the fact
     that individuals who are likely to succeed at the university return gains 
     to the university, and therefore justify their admissions in a free market
-    of talent.
+    of talent. This positive feature represents an action of the individual that
+    gives rise (``earns'') their right to be admitted. This stands in contrast
+    to the Rawlsian approach, under which there is no broad support for
+    meritocratic systems. Academic performance for Rawls is likely a product of
+    natural talent and luck, and therefore by Rawlsian standards, is not a valid
+    basis to allocate admissions inequitably.
     \item In contrast, we should also say that a student is entitled to admissions if
     they have demonstrated a stronger work ethic and commitment level than their
     peers, even if they attended a lower income school and thereby has less 
     access to advanced classes and tutoring resources. Effort and commitment
     demonstrate a greater value endowed into an application, and therefore a
-    higher degree of entitlement.
+    higher degree of entitlement. Here the difference with Rawls is more subtle.
+    Rawls would agree that the student from a lower income school and with less
+    access to resources should be promoted in admissions, but as a redistributive
+    effort rather than as a recognition of the value endowed in the application.
+    On the entitlement approach, two students who have expended equal work and
+    effort should be treated equally in this respect, regardless of their 
+    background.
     \item Finally, we might also want to consider a student's cultural fit and
     addition to the campus community. This feature reflects a student's
     entitlement on the basis of more than just academic merit — a student who
     provides cultural value to a university provides similar, though reduced
     value to the university as a student who provides academic value, and
-    therefore has a similar, though lesser, entitlement.
+    therefore has a similar, though lesser, entitlement. This feature can be
+    subdivided into both a positive and negative feature. A student who has 
+    demonstrated positive cultural value to the community gains an entitlement,
+    while a student who has demonstrated negative cultural value forfeits their
+    entitlement earned through academic merit and effort. Here Rawls again pulls
+    apart from the entitlement approach. Under the Rawlsian view, cultural fit,
+    so far as it is a product of natural tendencies and socialization, is not a
+    valid basis for admissions.
 \end{itemize}
 An algorithm meant to implement entitlement fairness in college admissions
 would then consist of predictors which extract each of these values for each
@@ -157,10 +187,9 @@ about this on an individual basis — if for just one person I value their
 self-ownership less than another, I have failed to respect their property 
 rights. As a result, it seems clear that the appropriate way to ensure that 
 predictors of positive entitlement features are fair is to ensure that they
-satisfy counterfactual fairness. Holding fixed those covariates of an
-individual which give rise to the positive entitlement feature, we must ensure
-that the predictor outputs the same value regardless of the individual's other
-features.
+satisfy counterfactual independence. Given two individuals do not differ
+significantly in any manner relevant to the positive feature being predicted, the
+predictor should output the same value for both individuals.
 
 For negative entitlement features, the situation is a bit different. Rather than
 gaining an entitlement through the mixing of one's self with the subject of the
@@ -170,34 +199,16 @@ entrance exam scores that they include in their application, they are attempting
 a coercive act that violates the rights of other students who are applying
 honestly and in doing so, they forfeit their ability to gain entitlement over
 admissions. In this case, our chief fairness concern is with errors in the
-predictor. Wrongful accusations of negative features caused by false positives
-in the negative feature predictor result in the deprivation of one's property
-rights and therefore must be avoided. Similarly, false negatives in the
-predictor result in the wrongful granting of property rights to individuals who
-have forfeited them, to the exclusion of others who are more entitled.
-
-Given it is not possible to eliminate all errors in the predictor, we must 
-differentiate between the two types of errors. False positives in the predictor
-result in wrongful accusations and therefore wrongful deprivation, but these 
-cases may be fixed through the process of rectification in accordance with 
-entitlement theory. In other words, if a negative predictor accuses an
-individual of some negative feature, say cheating on a test, that individual 
-must be given the opportunity to defend themselves. If they are able to prove 
-their innocence, then the initial allocation must be rectified, and the
-individual should receive the property right they were entitled to had they not
-been flagged for cheating. In contrast, false negatives in the predictor result
-in property deprivation in a way that is much more difficult to rectify. If we
-allocate admissions to a student who has cheated on their application and we 
-fail to catch them, we won't know that we have made a mistake, and the student
-who should have gotten in in their place similarly won't know or be able to
-challenge the relevant decision. As a result, we must be much more careful about
-false negatives in the predictor of negative entitlement features than false 
-positives. This culminates in two results. Firstly, if an individual is denied
-an allocation on the basis of a negative entitlement feature, they must be given
-the opportunity to defend themselves in accordance with the principle of
-rectification. Secondly, the predictor of negative entitlement features must be
-as accurate as possible according to a weighted loss function that penalizes false
-negatives more heavily than false positives. 
+predictor. Any error in the predictor of a negative feature will result in an
+infraction on the property rights of some individual in the population—therefore
+we must ensure that the predictor is as accurate as possible. Given that the
+predictor will necessarily be imperfect, we are also required by entitlement
+theory to grant individuals the right to appeal the decision of the predictor, so
+that if they've been wrongfully accused of a negative entitlement feature, they
+may present their case for rectification. Thus fairness in the negative feature
+predictor is a matter of ensuring there is a low error rate, individuals are 
+aware of the features being predicted, and that they have the right to appeal
+the decision of the predictor.
 
 \subsection{Entitlement Fairness and Redistribution}
 
@@ -234,10 +245,21 @@ entitlement features and $V^-$ contains the negative entitlement features
 relevant to the problem domain. Implement a predictor for each feature,
 $v_j = \hat{p_j}(X)$. Now, these are the conditions for entitlement fairness:
 \begin{enumerate}
-    \item $P[f(X_1) = 1 | V = v] = P[f(X_2) = 1 | V = v]\;\forall X_1, X_2$ (Independence Condition)
+    \item $P[f(X_1) = 1 | V_1] = P[f(X_2) = 1 | V_1]\;\forall X_1, X_2$ (Independence Condition)
     \item $P[p_{j, A\leftarrow a}(X) = 1 | X=x, A=a] = P[p_{j, A\leftarrow b}(X) = 1 | X=x, A=a]\;\forall a, b \in A, v_j \in V^+$ (Positive Feature Counterfactual Condition)
-    \item $P[p_j(X) = 1 | v_j(X) = 0, A = a] = P[p_j(X) = 1 | v_j(X) = 0, A = b]\;\forall a, b \in A, v_j \in V^-$ and 
-    $P[p_j(X) = 0 | v_j(X) = 1, A = a] = P[p_j(X) = 0 | v_j(X) = 1, A = b]\;\forall a, b \in A, v_j \in V^-$ (Negative Feature Odds Condition)
+    \item $p_j = \underset{p}{\operatorname{argmin}}\, L(p_j, v_j)$ where $L$ is a loss function giving the error of the predictor $p_j$ (Negative Feature Accuracy Condition)
+\end{enumerate}
+In addition to these mathematical conditions, we also require that
+\begin{enumerate}
+    \item The values of the features predicted by the model be made
+    transparent to the individuals affected by the decision.
+    \item The individuals affected by the decision have suitable opportunities
+    to appeal the decision of the predictor for rectification.
+    \item The moral importance of the features used in the decision problem be 
+    justified and defended in a public forum. 
 \end{enumerate}
 
-\todo{College admissions example all the way through}
+These conditions together provide a context-sensitive and principled approach to
+algorithmic fairness derived from the entitlement approach to justice, and 
+provide a framework for understanding how to select and apply fairness criteria
+in algorithmic decision-making.

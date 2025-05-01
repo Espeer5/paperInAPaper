@@ -3,8 +3,29 @@ contributions of the LLM in each phase of the paper writing process. There is no
 clean accounting of which words or ideas were produced by the LLM and which were
 produced by the human author, as the two were in constant dialogue in both
 developing the argumentation and writing the text. However, we will present a 
-qualitative analysis of the contributions of the LLM in each phase, and describe
-show examples of the LLM's contributions and activities in each phase.
+qualitative analysis of the contributions of the LLM in each phase, and show
+illustrative examples of the LLM's contributions and activities in each phase.
+
+Note that in general it is not so obvious how one should evaluate the success of
+co-authorship, even with a human coauthor. The goal of the project was to
+produce an original and high-quality contribution to a field, but even if the 
+LLM had not been able to produce any original ideas or argumentation, a
+high-quality paper could still have been produced through the effort of the 
+human authors alone, meaning that the quality of the paper is not a good metric
+for the success of the LLM. Instead, the analysis of each task will be guided by
+a few  specific questions that may be of interest to the reader:
+\begin{enumerate}
+    \item What positive contributions did Llama make to the task?
+    \item What were the limitations of Llama in this task?
+    \item How did Llama's contributions compare to those that a human coauthor
+          could have made?
+    \item What, if anything, did Llama contribute that appears to be original
+          or novel ideation?
+    \item What was the experience of using Llama as a coauthor in this task
+          like compared to working with a human?
+    \item If given the chance to redo this phase of the project, would you
+          choose to work with Llama again?
+\end{enumerate}
 
 \subsection{Literature Review}
 
@@ -15,18 +36,18 @@ frontiers in the literature in this area. A coauthor in this phase of research
 might suggest relevant papers to read, or suggest a particular angle to
 investigate based on their own expertise.
 
-Completing this phase of the process with the LLM is critical for the experiment,
-as including the relevant source and background materials into the context
-memory mechanism is a necessary step to ensure that the LLM is on topic and able
-to pull text from the relevant literature throughout the remainder of the
-process. In a human collaboration, this step would be similarly critical in a
-two-sided way. Both human authors need to have a pool of shared knowledge from
-the literature to draw from and stimulate discussion. The question then becomes
-whether the process with the LLM will be similarly two-sided; will Llama be able
-to pull useful papers and ideas from the literature to suggest to the human 
-author? Or will this phase become independent literature review on the part of
-the human author, compounded with having to teach Llama the relevant
-background knowledge?
+Completing this phase of the process with the LLM is critical for the
+experiment, as including the relevant source and background materials into the
+context memory mechanism is a necessary step to ensure that the LLM is on topic
+and able to pull text from the relevant literature throughout the remainder of
+the process. In a human collaboration, this step would be similarly critical in
+a more reciprocal way. Both human authors need to have a pool of shared
+knowledge from the literature to draw from and stimulate discussion. The
+question then becomes whether the process with the LLM will be similarly
+two-sided; will Llama be able to pull useful papers and ideas from the
+literature to suggest to the human author? Or will this phase become independent
+literature review on the part of the human author, compounded with having to
+teach Llama the relevant background knowledge?
 
 As an entry point to this phase, we often asked Llama to suggest papers to read
 about a particular topic or concept, and to summarize those papers. For example,
@@ -55,7 +76,7 @@ Llama that were not real are variations on real papers or are given titles
 reflecting thoughts of the author that may be found in other papers. For example,
 Llama suggested reading ``Entitlement Justice: A Review of the Literature'' by 
 David Miller. This paper does not exist, but on further inspection, David Miller
-wrote both as Stanford Encyclopedia of Philosophy entry on Justice that provides
+wrote both a Stanford Encyclopedia of Philosophy entry on Justice that provides
 an overview of the literature on Entitlement Justice, and a book called
 ``Principles of Social Justice'' which offers a critical perspective on Nozick's
 theory.
@@ -83,8 +104,8 @@ a significant effort on the part of the human author to extract the results.
 \subsection{Research Question Development}
 
 Beyond searching and summarizing the literature, Llama did have something to
-offer in terms of new and interesting areas to explore through our research question.
-When prompted to connect the Rawls/Nozick divide to the literature on
+offer in terms of new and interesting areas to explore through our research
+question. When prompted to connect the Rawls/Nozick divide to the literature on
 algorithmic fairness with no context beyond short descriptions of the two 
 theories, Llama suggested the following:
 
@@ -107,20 +128,20 @@ characteristics. This can involve techniques such as fairness-aware
 optimization, debiasing, and explainability.''
 
 This response is, admittedly, a bit vague and high level, but note that it
-suggests an interesting avenue to explore that we cannot find any reference to in
-the literature. The idea that the dichotomy between Nozick and Rawls should be 
-compared with and contrasted with the typical dichotomy between individual and
-group fairness measures from algorithmic fairness is an interesting one, and
+suggests an interesting avenue to explore that we cannot find any reference to
+in the literature. The idea that the dichotomy between Nozick and Rawls should
+be compared with and contrasted with the typical dichotomy between individual
+and group fairness measures from algorithmic fairness is an interesting one, and
 turned out to be a fruitful line of inquiry for the paper \emph{that we would
 not have otherwise explored}. On follow-up questions, Llama expanded this area
 of inquiry to point towards the literature on counterfactual fairness and how it
 relates to individualized fairness, and suggested several relevant papers and
 authors to read on this topic. This is a complex and nuanced approach to the
 literature that Llama recommended, and one that we haven't found explicitly
-examined elsewhere, nor one which we would've though to explore so quickly
+examined elsewhere, nor one which we would've thought to explore so quickly
 without Llama's prompting. Clearly, this is not a case in which Llama was used
-as a tool to extract, refine, or sharpen our own ideas, but rather a contribution
-of new external ideas into the research question development phase.
+as a tool to extract, refine, or sharpen our own ideas, but rather a
+contribution of new external ideas into the research question development phase.
 
 The manner in which Llama recommended this line of inquiry was less explicit and
 direct than a human coauthor would be, and the ideas included were not as sharp
@@ -157,18 +178,19 @@ Llama contributed to the argumentation in two main ways. The first was to
 produce text which laid arguments out in a clear and concise manner when
 prompted with the bulk of the argument. These presentations were often beyond
 the claim inputted, but not so far beyond as to be considered a novel claim in
-themselves. For example, when ask to present the claim that ``Group fairness measures
-are irrelevant to entitlement theories of justice,'' Llama produced an argument
-which started from elements of Nozick's theory and built up the claim logically
-to the conclusion, including the consideration of counterarguments and 
-objections that it had not been prompted to consider. The details of the argument
-produced were not always accurate, and rarely complete, but the structure served
-as a sort of template for the human author to fill in with their own arguments.
-In this way, Llama goes beyond the standard capabilities of human contributors,
-who would be very unlikely to help the author structure this argument with this
-level of detail. However, the ultimate result is that the critical thinking to
-really sharpen the argument originates from within the human author, and Llama 
-is not able to \emph{source} the argumentation in a way that a coauthor would.
+themselves. For example, when ask to present the claim that ``Group fairness
+measures are irrelevant to entitlement theories of justice,'' Llama produced an
+argument which started from elements of Nozick's theory and built up the claim
+logically to the conclusion, including the consideration of counterarguments and 
+objections that it had not been prompted to consider. The details of the
+argument produced were not always accurate, and rarely complete, but the
+structure served as a sort of template for the human author to fill in with
+their own arguments. In this way, Llama goes beyond the standard capabilities of
+human contributors, who would be very unlikely to help the author structure this
+argument with this level of detail. However, the ultimate result is that the
+critical thinking to really sharpen the argument originates from within the
+human author, and Llama is not able to \emph{source} the argumentation in a way
+that a coauthor would.
 
 The second (and more useful) way Llama contributed to argumentation task was by
 critiquing arguments presented to it. When asked to find gaps in an argument or
@@ -183,19 +205,25 @@ internet favors critique over positing new ideas?).
 Given a motivating research question, a number of relevant sources to call on,
 and an argument to make, one might hope that the LLM would be able to produce
 a rough draft of the full text of the paper that could be edited and refined by
-the human author.  This is far from the case.
+the human author. This is far from the case.
 
 Given an argument to make, Llama is able to produce text to defend it. Given 
 sources to call on, Llama is able to produce text that develops some background
 knowledge and context for the paper. Given a motivating research question, Llama
 can provide a first pass at an introduction and conclusion section that connect
 the two. However, Llama is not able to tie these ingredients together to produce
-a coherent and well-structured paper. The text produced is not only in need of
-line-editing, but is lacking in focus and detail, and often repetitive. It is
-clear, therefore, that the process of developing the writing must be more
-iterative, with the human author closely monitoring the output and repeatedly 
-editing the text output by the LLM, as well as filling in the gaps in the 
-produced text. 
+a coherent and well-structured paper. This is not surprising, as the buffer size
+of the Llama-2-7b-32K model used is 32,768 token, or around 25,000 words. Given
+that the length of the paper produced is around 8,000 words, and that the
+context window consisted of a wealth of discussion, questioning, and sections 
+from other sources, Llama was not able to have the full wealth of information
+needed to produce the fully fleshed out paper. Of course, more sophisticated 
+models with larger buffer sizes may outperform Llama in this regard. The text
+produced by Llama is not only in need of line-editing, but is lacking in focus
+and detail, and often repetitive. It is clear, therefore, that the process of
+developing the writing must be more iterative, with the human author closely
+monitoring the output and repeatedly editing the text output by the LLM, as well
+as filling in the gaps in the produced text. 
 
 This process proceeds how one would expect — pass a section of text back and
 forth between the human author and Llama, with each critiquing and editing
