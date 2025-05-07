@@ -25,3 +25,5 @@ ipython/
 *.fls
 *.lof
 *.lot
+
+*.DS_store

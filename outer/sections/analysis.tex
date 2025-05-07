@@ -5,15 +5,17 @@ produced by the human author, as the two were in constant dialogue in both
 developing the argumentation and writing the text. However, we will present a 
 qualitative analysis of the contributions of the LLM in each phase, and show
 illustrative examples of the LLM's contributions and activities in each phase.
+The full logs of all interactions with Llama are available in the appendix.
 
 Note that in general it is not so obvious how one should evaluate the success of
 co-authorship, even with a human coauthor. The goal of the project was to
 produce an original and high-quality contribution to a field, but even if the 
 LLM had not been able to produce any original ideas or argumentation, a
 high-quality paper could still have been produced through the effort of the 
-human authors alone, meaning that the quality of the paper is not a good metric
-for the success of the LLM. Instead, the analysis of each task will be guided by
-a few  specific questions that may be of interest to the reader:
+human authors alone, meaning that a high quality paper does not necessarily
+indicate that the LLM performed well in the collaboration. Instead, the analysis
+of each task will be guided by a few  specific questions that may be of interest
+to the reader:
 \begin{enumerate}
     \item What positive contributions did Llama make to the task?
     \item What were the limitations of Llama in this task?
@@ -29,12 +31,12 @@ a few  specific questions that may be of interest to the reader:
 
 \subsection{Literature Review}
 
-The first phase of the project was to carry out literature review, interrogating
-the vague notion of the intersection between algorithmic fairness measures and
-distributive justice. Working through this process requires identifying gaps and
-frontiers in the literature in this area. A coauthor in this phase of research
-might suggest relevant papers to read, or suggest a particular angle to
-investigate based on their own expertise.
+The first phase of the project was to carry out a literature review,
+interrogating the vague notion of the intersection between algorithmic fairness
+measures and distributive justice. Working through this process requires
+identifying gaps and frontiers in the literature in this area. A coauthor in
+this phase of research might suggest relevant papers to read, or suggest a
+particular angle to investigate based on their own expertise.
 
 Completing this phase of the process with the LLM is critical for the
 experiment, as including the relevant source and background materials into the
@@ -178,7 +180,7 @@ Llama contributed to the argumentation in two main ways. The first was to
 produce text which laid arguments out in a clear and concise manner when
 prompted with the bulk of the argument. These presentations were often beyond
 the claim inputted, but not so far beyond as to be considered a novel claim in
-themselves. For example, when ask to present the claim that ``Group fairness
+themselves. For example, when asked to present the claim that ``Group fairness
 measures are irrelevant to entitlement theories of justice,'' Llama produced an
 argument which started from elements of Nozick's theory and built up the claim
 logically to the conclusion, including the consideration of counterarguments and 
@@ -219,11 +221,13 @@ context window consisted of a wealth of discussion, questioning, and sections
 from other sources, Llama was not able to have the full wealth of information
 needed to produce the fully fleshed out paper. Of course, more sophisticated 
 models with larger buffer sizes may outperform Llama in this regard. The text
-produced by Llama is not only in need of line-editing, but is lacking in focus
-and detail, and often repetitive. It is clear, therefore, that the process of
-developing the writing must be more iterative, with the human author closely
-monitoring the output and repeatedly editing the text output by the LLM, as well
-as filling in the gaps in the produced text. 
+produced by Llama is not only in need of line-editing, but instead often gives
+the impression that Llama is not able to grasp the full arc of the argument
+being made, and certainly not able to understand it within its full context.
+It is clear, therefore, that the process of developing the writing must be more
+iterative, with the human author closely monitoring the output and repeatedly
+editing the text output by the LLM, as well as filling in the gaps in the
+produced text. 
 
 This process proceeds how one would expect — pass a section of text back and
 forth between the human author and Llama, with each critiquing and editing

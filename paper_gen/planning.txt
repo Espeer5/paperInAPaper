@@ -1,0 +1,55 @@
+################################################################################
+#  MODEL SELECTION                                                             #
+################################################################################
+
+I think we should simply use the commercially available LLM that leads the way
+in reasoning benchmarks.
+ - Claude 3.5 Sonnet
+     - leads in GPQA (graduate level reasoning)
+     - Math (grade school & multilingual)
+     - Reasoning over text (DROP)
+     - Mixed Evaluations (BIG-Bench-Hard)
+     - Undergraduate level knowledge
+
+The reasoning skill provides the most potential to address the foreseen (and
+encountered) issues with Llama — inability to reason through a full academic 
+argument well.
+
+################################################################################
+#  QUESTIONS                                                                   #
+################################################################################
+
+Should we pass in relevant literature to use as sources? Or is that loading up
+the prompt too much?
+
+
+################################################################################
+#  PROMPT ENGINEERING                                                          #
+################################################################################
+
+Write an 8000 word undergraduate philosophy thesis, structured with an
+introduction section, background section, original argument, and conclusion that
+answers the following question. Use formal academic tone and cite literature
+as appropriate.
+
+Algorithms are being used more frequently to make social decisions. There are
+a number of proposed fairness metrics that can be used to measure statistical
+fairness conditions on the output of decision making models, but it is not
+possible to satisfy all of them on any particular model. As a result, we must
+choose which measures to use on any given problem, and it is not always clear
+which measure we should prefer. Recent papers (Hertweck et al 2024, Hertweck et
+al 2023, Kuppler et al 2021) have shown a link between algorithmic fairness and
+theories of distributive justice in an effort to clarify how these measures
+should be thought of philosophically. Egalitarianism dominates much of the
+philosophical literature cited, but libertarian theories such as Nozick’s
+entitlement theory are notably absent. 
+
+Your thesis should begin by clearly explaining key fairness metrics (e.g.,
+demographic parity, equalized odds) and the core concepts of egalitarian and
+libertarian justice. Then, formulate a definition of algorithmic fairness
+grounded in entitlement theory (e.g., Nozick’s principles of acquisition,
+transfer, and rectification). Apply this framework to a hypothetical or
+real-world example (e.g., loan approval or hiring), and compare the outcomes to
+egalitarian models. In each major section, make your assumptions explicit,
+justify your philosophical claims with textual support or example cases, and
+anticipate possible objections to the entitlement-based framework.
