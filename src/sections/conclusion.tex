@@ -8,17 +8,17 @@ some directions for future research.
 
 The entitlement fairness framework has several advantages over existing fairness
 measures. Firstly, it is a measure which has baked in context sensitivity. In
-selected a set of positive and negative features which are morally relevant to
-the decision problem at hand, the fairness measure is able to capture
-concerns about the decision problem that could not be captured by simple 
-disparity measures across groups. 
+selected a set of positive and negative features which are relevant to the
+decision problem at hand, the fairness measure is able to capture concerns about
+the decision problem that could not be captured by simple disparity measures
+across groups. 
 
 In each problem domain the framework is applied to, the system designer must
 make conscious choices about the features that are allowed to be used in the 
 decision process, and must defend those choices in light of the particulars of
-the domain. There can be no ``lift and shift'' of the entitlement fairness 
-measure from one system to another, meaning that the application of the measure
-is always done consciously and with moral justification. This stands in contrast
+the domain. The framework cannot be implemented in one context, and then naively
+applied to a different context which it might not be appropriate for, since its
+application requires careful consideration. This stands in contrast
 to existing measures of algorithmic fairness, which can be applied to any system
 without extensive consideration of the idiosyncrasies of the problem domain. For
 example, consider the case of the COMPAS algorithm, in which the original
@@ -51,39 +51,40 @@ The final benefit of the entitlement fairness measure is that it gives a high
 level of transparency to the population it is employed on. Not only do
 individuals who decisions are made on have recourse to appeal their decisions, 
 but they have a clear understanding of the features that are being used to make
-the decision and the moral justification for those features. This is a key 
+the decision and the justification for those features. This is a key 
 result of the entitlement fairness measure, as it allows some small level of
 explanation to be provided to the individuals who are affected by the system.
 This is a key difference from existing fairness measures, which may help to
 soothe concerns about how some particular variables are used in the decision 
 process, but not actually provide or identify the features that are used in the
-decision process. 
+decision process. This transparency could be considered a sort of explanation
+for the decision process as now legally required in some jurisdictions.
 
 \subsection{Limitations of the Entitlement Fairness Measure}
 
 The entitlement fairness measure is not without its limitations. The framework
 is much more difficult to apply than existing fairness measures, as it requires
-a great deal more effort up front to identify morally relevant features to the
-problem domain and train separate prediction models for each features. This 
-level of complexity is only further compounded by the need to maintain a 
-rectification system for the users of the system, and the need to publish the
-features used in the decision process. This is a key current limitation of the
-system, as it is unlikely that many organizations will be willing to put the 
-framework into practice due to the high cost of implementation and the need for
-a high level of transparency.
+a great deal more effort up front to identify relevant features to the
+problem domain and the arrangement of a system of rectification. This is a key
+current limitation of the system, as it is unlikely that many organizations
+will be willing to put the framework into practice due to the high cost of
+implementation and the need for a high level of transparency. Keeping up a
+system of rectification requires human effort and resources and is likely to
+be a significant burden on the organization.
 
 The entitlement fairness measure is also highly limited by the requirement of 
-moral justification of the features used in the decision process. While 
+justification of the features used in the decision process. While 
 an organization may provide justifications for the features they use in their
 decision process, it is highly unlikely that the justifications will be
 universally accepted or uncontroversial. The result is that by publishing the 
-moral reasoning behind the features used to make the decision, the organization
+reasoning behind the features used to make the decision, the organization
 is likely to open itself up to a great deal of scrutiny and criticism from the
-public—more than it would have received if it had simply used a standard fairness
-and not published extensive justifications. While this is an unfortunate 
-consequence of the framework, it is also a typical consequence of any change
-that promotes transparency and accountability and is a necessary step in the
-development of a more principled approach to algorithmic fairness.
+public, and possibly gaming of the system—more than it would have received if
+it had simply used a standard fairness and not published extensive
+justifications. While this is an unfortunate consequence of the framework, it
+is also a typical consequence of any change that promotes transparency and
+accountability and is a necessary step in the development of a more principled
+approach to algorithmic fairness.
 
 \subsection{Future Directions}
 
@@ -101,7 +102,7 @@ problems.
 
 Second, the framework presented here is limited to the case of discrete
 features. The extension to continuously valued features opens new questions
-around how to define the moral relevance of features and how to measure the 
+around how to define the normative relevance of features and how to measure the 
 success of a particular feature in the decision process. Similarly,
 rectification becomes much more difficult in the case of continuously valued
 features, as the system implementer must now decide what threshold values

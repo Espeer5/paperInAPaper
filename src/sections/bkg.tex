@@ -1,17 +1,19 @@
 In this paper, we will center our attention on a class of decision problems
 corresponding to the following formalism. There exists some population of 
 individuals $I = \{i_1, i_2, \ldots, i_n\}$ over whom we must distribute some
-finitely divisible amount of a resource, $R$. A \textit{decision rule} is a
-mapping $d: I \rightarrow \{0, 1\}$, under which $i_n$ receives $R$ iff
-$d(i_n) = 1$. As an example, consider the process of allocating loans over a
-pool of applicants — for each individual in the applicant pool, we have a binary
-choice to either approve or deny the loan, and only on acceptance does the
-individual receive capital.
+finitely divisible amount of a resource. A \textit{decision rule} is a
+mapping $d: I \rightarrow \{0, 1\}$, under which $i_n$ receives the resource iff
+$d(i_n) = 1$. Since the resource is finite, there is a constraint on the number
+of individuals who can receive positive outcomes. As an example, consider the
+process of allocating loans over a pool of applicants — for each individual in
+the applicant pool, we have a binary choice to either approve or deny the loan,
+and only on acceptance does the individual receive capital. The bank cannot 
+approve all applicants, as they would run out of capital to lend.
 
 An algorithmic decision maker in this setup is a system, particularly a
 technical system, under which a decision rule is implemented as a set of steps
 which are applied identically to all individuals. This broadly consists of two
-tasks. First, a set of covariates $X = \{x_1, x_2, \ldots x_n\}$ must be\
+tasks. First, a set of covariates $X = \{x_1, x_2, \ldots x_n\}$ must be
 collected for each individual. Then, a classification scheme
 $f: X \rightarrow \{0, 1\}$ must be used to map each individual to an outcome.
 Returning to the loan case, a simple example would be the following: Approve a

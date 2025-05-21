@@ -32,7 +32,9 @@ entitlement theory. Under the liberal view, commonly associated with John Rawls,
 the chief objective of justice is to equalize allocation across all individuals
 in a population. In contrast, the entitlement view, associated with Robert
 Nozick, emphasizes the importance of individual property rights and the freedom
-to exchange goods and services without interference. 
+to exchange goods and services without interference. On this view, justice is
+instantiated not by the outcome distribution of a system, but by how resources
+are acquired and exchanged within a system.
 
 The relationship between algorithmic fairness measures and distributive justice
 is not yet well understood, but several recent papers have begun to explore this
@@ -43,14 +45,18 @@ the outcome distribution over social groups are predicated on certain
 assumptions about equality as a foundation for justice. \citep{Baumann_2023} 
 develops this further, but rightly points out that this approach is limited to
 one particular view of justice, and that it's unclear how a structurally
-different theory of distributive justice such as Nozick's entitlement theory
-could be formalized as a fairness measure. Given that entitlement justice is a
-prominent area of inquiry in political philosophy that addresses a broad range
-concerns not covered in liberal justice, it is worth investigating how to
-close this gap. In particular, how do issues of entitlement appear
-in algorithmic decision making? How can these concerns be encoded by algorithmic
-fairness measures? And what do we stand to lose or gain by conceptualizing
-algorithmic fairness through the entitlement lens?
+different theory of distributive justice such as Nozick's entitlement theory,
+which operates not on the allocation of resources, but on the process of 
+acquisition and exchange, can be reconciled with algorithmic fairness. This is 
+a significant gap in the literature, as entitlement theory represents an entire
+school of thought in the field of distributive justice, and protects a different
+and significant set of values than those represented by egalitarianism. This
+paper will seek to fill this gap by exploring the relationship between
+algorithmic fairness and entitlement theory, and how the two can be reconciled.
+In particular, how do issues of entitlement appear in algorithmic decision
+making? How can these concerns be encoded by algorithmic fairness measures? And
+what do we stand to lose or gain by conceptualizing algorithmic fairness through
+the entitlement lens?
 
 In this paper, we will carefully examine the relationship between algorithmic
 fairness and libertarian justice, and develop a formalism that clarifies the
@@ -68,7 +74,7 @@ and~\citep{CorbettDavies_2023} to create a unified model for understanding
 algorithmic fairness and distributive justice consistently with each other. 
 In Section~\ref{sec:entitlement-justice}, we introduce the concept of
 entitlement justice and discuss its historical development. We contrast
-entitlement theory with liberal egalitarianism to identify the the critical
+entitlement theory with liberal egalitarianism to identify the critical
 elements of entitlement which must be represented in account of algorithmic
 fairness, and confront the traditional objections to entitlement theory. In
 Section~\ref{sec:entitlement-fairness}, we propose a new framework for

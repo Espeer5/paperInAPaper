@@ -87,7 +87,7 @@ What follows is the full text of the paper produced in collaboration with Llama.
 
 % FULL PAPER INSERT HERE
 
-% \includepdf[pages=-]{../src/top-level.pdf}
+\includepdf[pages=-]{../src/top-level.pdf}
 
 This is the end of the collaboration with Llama. Beyond this point, all text
 was written by human authors without the assistance of LLMs.
@@ -102,11 +102,16 @@ was written by human authors without the assistance of LLMs.
 
 \pagebreak
 
+\bibliography{references}
+
 \section{Appendix I}\label{sec:appendixI}
 
 The full source code for the chat application used in this study as well as all
 chat logs are available at the following link: 
 \url{https://github.com/Espeer5/paperInAPaper}
 
-\bibliography{references}
+\pagebreak
+
+\input{../paper_gen/gen.tex}
+
 \end{document}

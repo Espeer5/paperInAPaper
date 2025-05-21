@@ -22,7 +22,14 @@ resources we typically think of as property, but also includes things like
 admission to a particular college. In brief, property will refer to any finite
 desirable resource that can be allocated to an individual. This is a much
 broader understanding of property to allow the entitlement framework to be 
-applied across a wide range of decision-making domains.
+applied across a wide range of decision-making domains. Something like college
+admissions may not be something we can count or measure in the same way we can
+conventional property, but it is something one can \emph{earn} a claim to, and
+something about which there can be a proper question of ownership. Ownership in
+these systems cannot be legal ownership because the legal system does not and
+should not have power of authority over allocation in these domains, but there
+is still a fact about rightful entitlement outside from what the law is able to
+ensure.
 
 \subsection{Fairness in Process}
 
@@ -35,9 +42,8 @@ decision-maker outputs a fair distribution, we must instead ask whether the
 manner in which decisions about allocations are made is fair. This is a
 subtle but important distinction. Under the entitlement approach, the output
 distribution is allowed to be heavily skewed in favor of some individuals or
-groups if it represents the true distribution of property rights, but the
-process by which the output distribution is arrived at must be in accordance
-with the principles of just acquisition.
+groups so long as the process by which the output distribution is arrived at is
+in accordance with the principles of just acquisition and transfer.
 
 As an example, consider the case of college admissions. Under the liberal
 egalitarian approach, we mighty ask whether the output distribution of our
@@ -45,14 +51,21 @@ algorithm is fair by asking whether it results in a roughly equal number of
 students admitted between race A and race B. Under the entitlement approach,
 however, there is no reason to ask this question—we might find that the
 students entitled to admissions are 90\% members of race B. Instead, the
-relevant questions are how race is used in the admissions process  — are
+relevant questions are how race is used in the admissions process — are
 students from race A subject to the same rules of acquisition? Drawing on the
 framework of the Lockean proviso, given that two students, one from each race,
 have expended equal effort in their applications and studies, are the values
-endowed in their applications treated as equal? It is evident that to encode
-entitlement fairness, we cannot simply measure the outputs of an algorithm, but
-rather must analyze the treatment of protected features of individuals within
-the algorithm itself.
+endowed in their applications treated as equal? Whereas the egalitarian approach
+is that everyone is naturally entitled to an equitable share of the educational
+resources in society, the entitlement approach holds that there are particular
+actions and features of individuals that earn them the right to a higher level
+of education.  Just what these features are depends on the context and problem 
+domain of the decision-making system. Unlike the egalitarian approach, we cannot
+start from teh assumption of equality, and instead must start by defining the 
+set of relevant features that give rise to an individual's entitlement. From
+this analysis, it is evident that to encode entitlement fairness, we cannot
+simply measure the outputs of an algorithm, but rather must analyze the
+treatment of features of individuals within the algorithm itself.
 
 \subsection{Individual Responsibility}
 
@@ -87,7 +100,7 @@ problem. In other words, once we have identified the features and computed
 them on an individual, the output of the decision maker can be fully specified
 by these features alone. This lends itself to a natural understanding of
 fairness in process — the process of mapping an individual to their decision
-should be fully decided through the morally relevant features identified. These
+should be fully decided through the relevant features identified. These
 features should be explicitly justified and made transparent to the
 individuals affected by the decision. 
 
@@ -108,6 +121,12 @@ approach. A classification scheme must be developed that first computes the
 value of each of the relevant positive and negative entitlement features for
 each individual in the population. Then a decision must be reached through only
 those computed features, in isolation from the full input data to the algorithm.
+Note that this is \emph{not} equivalent to fairness through unawareness.
+Protected attributes of individuals will be used to learn the features relevant
+to the decision problem, and the features themselves will encode the information
+about the protected attributes. Rather than trimming the information about the
+protected attributes from the input data, we are instead using it to compute 
+relevant features which are then used to make reasons-based allocation decisions.
 This may seem to stand in stark contrast to the way that many machine learning
 algorithms are currently developed. For example, in a typical supervised
 learning setting, a model is trained to map a set of inputs to a set of outputs
@@ -117,7 +136,7 @@ neural networks and other machine learning models gives rise to a set of
 features computed by the model, constituting a lower-dimensional representation
 of the input data~\citep{Liu_2018}. The approach we suggest here can be thought
 of as a way of manually specifying a lower dimensional set of features that
-are morally relevant to implement individual fairness over as a way of
+are relevant to implement individual fairness over as a way of
 exercising control over \emph{how} the model makes decisions in order to
 implement fairness as a process.
 
@@ -142,7 +161,7 @@ are certainly relevant to the entitlement
     basis to allocate admissions inequitably.
     \item In contrast, we should also say that a student is entitled to admissions if
     they have demonstrated a stronger work ethic and commitment level than their
-    peers, even if they attended a lower income school and thereby has less 
+    peers, even if they attended a lower income school and thereby had less 
     access to advanced classes and tutoring resources. Effort and commitment
     demonstrate a greater value endowed into an application, and therefore a
     higher degree of entitlement. Here the difference with Rawls is more subtle.
@@ -169,46 +188,53 @@ are certainly relevant to the entitlement
 An algorithm meant to implement entitlement fairness in college admissions
 would then consist of predictors which extract each of these values for each
 individual, and then a system of mapping these values to a decision about
-admissions. 
+admissions. Of course, the standards used for entitlement in this domain and
+others are up for debate, and whatever set of features is selected must be
+justified and defended in a public forum.
 
 Now, one critical dimension of fairness remains to be discussed — how do we
 ensure that the predictors which compute the value of the relevant features for
 each individual are themselves fair? To understand this question, we should
 delve into the basis of the entitlement features themselves. Positive features
 of an individual give rise to property rights through the mixing of one's self 
-with the subject of the entitlement itself. If one's college application
-demonstrates a strong work ethic, the individual has spent significant effort to
-endow their application with value derived from their own self-ownership. The
-right to self-ownership is a fundamental principle that does represent one form
-of equality baked into the entitlement approach — we are required to treat the 
-endowment of value derived from self-ownership as equal across all individuals,
-irrespective of their characteristics or group membership. Notice that I care 
-about this on an individual basis — if for just one person I value their
-self-ownership less than another, I have failed to respect their property 
-rights. As a result, it seems clear that the appropriate way to ensure that 
-predictors of positive entitlement features are fair is to ensure that they
-satisfy counterfactual independence. Given two individuals do not differ
-significantly in any manner relevant to the positive feature being predicted, the
-predictor should output the same value for both individuals.
+with the subject of the entitlement itself. They are something that the
+individual does to imbue the subject of the entitlement with value. An error in
+the prediction of a positive feature results in the devaluing of an individual—
+either one is not given the credit they deserve for their work through a false
+negative, or one is given credit for work they did not do through a false
+positive, devaluing the work of others. For negative features, a similar 
+argument can be made. A false positive on a negative feature results in an
+individual being punished for something they did not do, while a false
+negative results in an individual being rewarded despite having done something
+disqualifying. In either case, we can see that errors in the prediction of 
+the features result in a violation of the entitlement of an individual. Under 
+Nozick's entitlement theory, there is no one individual or group for whom 
+violations of entitlement are more or less important. Therefore, there is no
+no reason to assume enforce any particular pattern of prediction errors in the
+feature predictors. Rather, what matters, is that the predictors are as accurate
+as possible, resulting in the fewest possible violations of entitlements.
+However, no predictor will remove all errors, and therefore we must also ask how
+we should handle the errors that do occur.
 
-For negative entitlement features, the situation is a bit different. Rather than
-gaining an entitlement through the mixing of one's self with the subject of the
-entitlement, the basis for negative entitlement features is the failure to
-respect the inherent rights of others. For example, if an individual cheats on
-entrance exam scores that they include in their application, they are attempting
-a coercive act that violates the rights of other students who are applying
-honestly and in doing so, they forfeit their ability to gain entitlement over
-admissions. In this case, our chief fairness concern is with errors in the
-predictor. Any error in the predictor of a negative feature will result in an
-infraction on the property rights of some individual in the population—therefore
-we must ensure that the predictor is as accurate as possible. Given that the
-predictor will necessarily be imperfect, we are also required by entitlement
-theory to grant individuals the right to appeal the decision of the predictor, so
-that if they've been wrongfully accused of a negative entitlement feature, they
-may present their case for rectification. Thus fairness in the negative feature
-predictor is a matter of ensuring there is a low error rate, individuals are 
-aware of the features being predicted, and that they have the right to appeal
-the decision of the predictor.
+Turning once more to Nozick's entitlement theory, we see that the theory
+provides clear direction in this respect. In his theory of justice, Nozick puts
+forward a principle of rectification, which states that if an individual has
+been wrongfully deprived of their entitlements, the subject of a past injustice,
+then they are entitled to a rectification of that injustice which will result in
+them having all those holdings which they would have had if the injustice had
+not occurred. Clearly we need to build such a system of rectification into our
+account to correctly reflect Nozick's entitlement theory. Given that the
+features we choose appropriately judge the entitlements of individuals, we see
+that the only way the system commits an injustice is if the features themselves
+are mis-predicted. As a result, we can see that we must offer a system of 
+rectification for individuals who have been wrongfully deprived. This has two 
+major implications. Firstly, an individual must be informed of the features used
+in their decisions and their values over those features. Second, the individual
+must have a means of appealing their prediction for particular features, and if
+proven the prediction was incorrect through investigation, the individual must
+be compensated for the error. This investigation should be human conducted,
+resulting in human oversight of the decision-making process where the algorithm
+is unable to provide a fair decision.
 
 \subsection{Entitlement Fairness and Redistribution}
 
@@ -217,37 +243,48 @@ of redistribution. Under the entitlement approach, once property rights have
 been established, they must be respected and protected, and no attempt should be
 made to redistribute resources in order to achieve a more equal distribution.
 Note that this is already successfully encoded in the system we have described.
-Once the set of morally relevant features have been identified, the decision
+Once the set of relevant features have been identified, the decision
 problem output must be entirely separated from the input data given the relevant
 features. This means that no redistributive scheme may be implemented after the
 property rights decision that attempts to balance the distribution of resources
 over less fortunate individuals.
 
 We are, however, offered a mechanism through entitlement theory for improving
-outcomes for those who have been wrongfully disadvantaged through the principle
-of rectification. For example, if we find that a particular group of individuals
-has been systematically excluded from a resource due to a historical injustice,
-rectification allows us to then consider membership in that group to be a
-positive entitlement feature, and to thereby account for it within the decision
-problem. This is a powerful mechanism for addressing historical injustices
-and allows us to consider the broader social context in which our algorithm is
-situated. 
+outcomes for those who have been wrongfully deprived of their entitlement
+through the principle of rectification. For example, if we find that a
+particular group of individuals has been systematically excluded from a resource
+due to a historical injustice, rectification allows us to then consider
+membership in that group to be a positive entitlement feature, and to thereby
+account for it within the decision problem. This is a powerful mechanism for
+addressing historical injustices and allows us to consider the broader social
+context in which our algorithm is situated.
+
+Importantly, rectification is not inherently redistributive. \emph{Lacking} a 
+particular resource does not give rise to a claim to that resource, unless the
+lack was produced by an injustice. An injustice can be done to one who is
+wealthy in the subject of the entitlement, or to one who is poor, and in either
+case rectification operates the same way.
 
 \subsection{Measuring Fairness}
 
 Having developed a qualitative account of entitlement fairness, we may now
 formalize our account in a way that allows us to measure it. We can
 define a measure of entitlement fairness as follows. Given our typical decision
-problem, identify a set of morally relevant features of each individual in the
-population, $V = \{v_1, v_2, \ldots, v_j\}$. These features should be
-partitioned into two sets, $V^+$ and $V^-$ where $V^+$ contains the positive
-entitlement features and $V^-$ contains the negative entitlement features 
-relevant to the problem domain. Implement a predictor for each feature,
-$v_j = \hat{p_j}(X)$. Now, these are the conditions for entitlement fairness:
+problem, identify a set of relevant features of each individual in the
+population, $V = \{v_1, v_2, \ldots, v_i\}$, where the value of each feature is
+a discrete variable which can take on a finite number of values. For example, 
+the feature ``academic performance'' might take on the values ``poor'', ``fair'',
+``good'', and ``excellent''. Implement a predictor for each feature, which maps
+from the covariates of an individual $X$ to a predicted value of the feature,
+$v_j \approx \hat{g_j}(X)$. Assume that the predictor $\hat{g}$ is chosen from a
+class of possible predictors $G_j$ for each feature, and define the accuracy of
+the predictor as $A(\hat{g_j}) = P[\hat{g_j}(X) = v_j]$. Recall from the setup
+in section 2 that $f$ is the function $f: X -> \{0, 1\}$ which determines from
+the covariates of an individual whether they are entitled to the resource in
+question. Now, these are the conditions for entitlement fairness:
 \begin{enumerate}
     \item $P[f(X_1) = 1 | V_1] = P[f(X_2) = 1 | V_1]\;\forall X_1, X_2$ (Independence Condition)
-    \item $P[p_{j, A\leftarrow a}(X) = 1 | X=x, A=a] = P[p_{j, A\leftarrow b}(X) = 1 | X=x, A=a]\;\forall a, b \in A, v_j \in V^+$ (Positive Feature Counterfactual Condition)
-    \item $p_j = \underset{p}{\operatorname{argmin}}\, L(p_j, v_j)$ where $L$ is a loss function giving the error of the predictor $p_j$ (Negative Feature Accuracy Condition)
+    \item $\hat{g_j} = \mathop{\arg\max}\limits_{g_j\in G_j}A(g)\; \forall j$ (Max Accuracy Predictor Condition)
 \end{enumerate}
 In addition to these mathematical conditions, we also require that
 \begin{enumerate}
@@ -255,7 +292,7 @@ In addition to these mathematical conditions, we also require that
     transparent to the individuals affected by the decision.
     \item The individuals affected by the decision have suitable opportunities
     to appeal the decision of the predictor for rectification.
-    \item The moral importance of the features used in the decision problem be 
+    \item The importance of the features used in the decision problem be 
     justified and defended in a public forum. 
 \end{enumerate}
 
@@ -263,3 +300,88 @@ These conditions together provide a context-sensitive and principled approach to
 algorithmic fairness derived from the entitlement approach to justice, and 
 provide a framework for understanding how to select and apply fairness criteria
 in algorithmic decision-making.
+
+The role of the first condition is to ensure that the decision-maker is
+correctly screened off from the input data by the features of the individual.
+This means that the output of the decision-maker is fully determined by the
+relevant entitlement features, such that the process by which the decision-maker
+reaches a decision is fair according to the principles of entitlement justice as
+described above. The second condition ensures that the features are predicted
+as accurately as possible, and that the decision-maker is producing as few 
+violations of entitlement as possible. The requirements for feature
+transparency and rectification ensure that when a decision is made that does 
+violate entitlement, the individual has the opportunity to appeal the decision
+and have it rectified according to Nozick's theory.
+
+\subsection{Entitlement Fairness in Practice}
+
+To see how the entitlement fairness measure is applied in practice, and how it 
+compares to existing, egalitarian measures of fairness, we will consider the
+college admissions example in detail. In this example, we will consider a
+decision problem in which a university is attempting to allocate a set of
+admissions to a set of students. We will focus on the division of two groups of
+students, the red group and the blue group, into admitted and rejected students.
+The university historically accepts far more students from the red group than
+from the blue group.
+
+The university is interested in allocating admissions to students in a way that
+is deemed fair, but there are some severe statistical disparities in the
+students who are applying. Red group students are much more likely to be
+interested in applying to the university's underwater basket weaving program,
+while blue group students are much more likely to be interested in applying to
+the university's computer science program. At this college, the computer science 
+program is much more competitive than the underwater basket weaving program,
+because underwater basket weaving is able to accept a much larger number of
+students. The university is developing a single central admissions algorithm to
+handle admittance across all programs.
+
+Under conventional measures of algorithmic fairness, the university is in a 
+difficult position. They can admit only a small number of students to the 
+computer science program, and since the majority of blue group students favor 
+computer science, they are likely to be rejected at a much higher rate than red
+group students. This would be opposite from a purely Rawlsian aproach, in which
+the historically disadvantaged blue group students should be favored in the 
+admissions process. To enforce this advantage, the university could implement a
+parity measure, such as equalized odds. However, in doing so, they would be
+preferring students from the blue group over red gorup students with equal
+qualifications—given two students with equal qualifications, one from each
+group, who both applied into underwater basket weaving, the algorithm would
+certainly prefer the blue group student in order to satisfy the output
+distribution constraints. In the end, balancing outcomes across the two groups
+is a bad idea, as the unequal base rates of acceptance due to self-selection 
+into the programs will naturally result in a highly unbalanced output
+distribution. Correcting for this imbalance results in a system that is
+inherently redistributive, and chooses to favor demographic group membership 
+over features relevant to the decision problem.
+
+In contrast, the entitlement fairness approach has no qualms about the inequity
+in the output distribution. The university is free to admit a demographic 
+mixture of students which is heavily skewed in favor of the red group, in 
+accurate reflection to the true distribution of qualifications combined with 
+self-selection into programs. The university must choose the relevant features
+to the domain. From the example described above, we borrow the feature set so
+that the positive entitlement features are academic performance, effort,
+cultural fit, and potential in the specific program. The negative entitlement 
+features are cheating on the application and negative social media presence.
+Now, the university is required to use these features only to make decisions
+about who to admit. Notice that group membership is not a feature at this stage
+of the decision process. Information from group membership may be relevant to
+the decision, but only in the sense that it is used to compute the values of the
+features. As an example, if a student is a member of the blue group, and the 
+blue group is socioeconomically disadvantaged, then the blue group student may
+receive a high effort score for an equal GPA and test score to a red group
+student. Once this feature is extracted, however, the decision-maker is no 
+longer allowed to use the group membership in the decision process, meaning that
+any information extracted from the group membership is used in a way that is
+consistent with a principled theory of justice. Compare this to the use of group
+membership in the egalitarian measures, where the group membership is used to 
+transfer the decision-maker's attention away from features which may be relevant
+to student's qualifications to achieve a statistical balance across groups.
+
+Finally, under the entitlement fairness approach, the university is required to
+publish the features used in the decision process and their values for each 
+individual. The university must then provide a rectification process for the 
+students, so that if they feel their values were mis-predicted, they can appeal
+the decision. Notice that this type of information could be thought to satisfy
+the the type of explanation that is required by the EU's GDPR~\citep{gdpr2016}
+as an additional benefit of the entitlement fairness approach.
