@@ -28,28 +28,45 @@ the prompt too much?
 ################################################################################
 
 Write an 8000 word undergraduate philosophy thesis, structured with an
-introduction section, background section, original argument, and conclusion that
-answers the following question. Use formal academic tone and cite literature
-as appropriate.
+introduction section, background section, original argument, and conclusion.
+Use formal academic tone and cite literature as appropriate. Answer the
+following prompt:
 
 Algorithms are being used more frequently to make social decisions. There are
 a number of proposed fairness metrics that can be used to measure statistical
 fairness conditions on the output of decision making models, but it is not
 possible to satisfy all of them on any particular model. As a result, we must
 choose which measures to use on any given problem, and it is not always clear
-which measure we should prefer. Recent papers (Hertweck et al 2024, Hertweck et
-al 2023, Kuppler et al 2021) have shown a link between algorithmic fairness and
-theories of distributive justice in an effort to clarify how these measures
-should be thought of philosophically. Egalitarianism dominates much of the
-philosophical literature cited, but libertarian theories such as Nozick’s
-entitlement theory are notably absent. 
+which measure we should prefer. Recent papers have shown a link between
+algorithmic fairness and theories of distributive justice in an effort to
+clarify how these measures should be thought of philosophically. Egalitarianism
+dominates much of the philosophical literature cited, which appears to be a
+natural fit. Algorithmic fairness measures typically measure how goods are
+allocated to different groups, and search for some measure of equality between
+them. This structure is egalitarian in measuring quality between entities.
+However, egalitarian measures only form one side of the literature on
+distributive justice. Whereas egalitarian theories measure the fairness of 
+particular distributions of goods across society, libertarian theories, 
+particularly Nozick's theory of entitlement justice study the processes by which
+distributions came about to define fairness. For Nozick, justice is satisfied if
+a distribution came about through a series of just acquisitions and transfers in
+a free market. This theory is structurally quite different from egalitarian 
+theories, and it is unclear how a theory structured in this way could be
+reflected in algorithmic fairness measures. This means a large proportion of the
+literature on distributive justice has been left out of the discussion of 
+algorithmic fairness measures. Develop an account of algorithmic fairness which
+is based on Nozick's entitlement justice and devise a measure of fairness which 
+can be used to determine if an algorithm is just according to Nozick's theory.
 
 Your thesis should begin by clearly explaining key fairness metrics (e.g.,
 demographic parity, equalized odds) and the core concepts of egalitarian and
 libertarian justice. Then, formulate a definition of algorithmic fairness
 grounded in entitlement theory (e.g., Nozick’s principles of acquisition,
-transfer, and rectification). Apply this framework to a hypothetical or
-real-world example (e.g., loan approval or hiring), and compare the outcomes to
-egalitarian models. In each major section, make your assumptions explicit,
-justify your philosophical claims with textual support or example cases, and
-anticipate possible objections to the entitlement-based framework.
+transfer, and rectification). This definition of fairness should allow for the
+algorithm to give rise to highly inequitable output distributions across groups
+as long as those inequities arose in a manner which would be considered just by
+Nozick. Apply this framework to a hypothetical or real-world example (e.g.,
+loan approval or hiring), and compare the outcomes to egalitarian models. In
+each major section, make your assumptions explicit, justify your philosophical
+claims with textual support or example cases, and anticipate possible objections
+to the entitlement-based framework.

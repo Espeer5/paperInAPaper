@@ -27,3 +27,5 @@ ipython/
 *.lot
 
 *.DS_store
+
+~$*
