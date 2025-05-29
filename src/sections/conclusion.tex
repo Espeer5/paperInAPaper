@@ -23,7 +23,7 @@ to existing measures of algorithmic fairness, which can be applied to any system
 without extensive consideration of the idiosyncrasies of the problem domain. For
 example, consider the case of the COMPAS algorithm, in which the original
 designers of the algorithm measured its fairness using predictive parity across
-races, which is a measure of accuracy across groups. predictive parity is
+races, which is a measure of accuracy across groups. Predictive parity is
 appropriate for some problem domains, particularly those where the base rates of
 the predicted outcome are the same across groups. The COMPAS system was later
 revealed to be discriminatory based on differing false positive rates across 
@@ -37,11 +37,11 @@ Secondly, the entitlement fairness measure is one that is well-aware of its own
 limitations and assumptions. Part of the requirement of entitlement fairness is
 the baked-in necessity for a system of rectification for entitlement violations.
 This holds the system implementer accountable for the decisions made by the
-system and for providing remedies for those harmed by the system. A system can
-not be entitlement fair without a way to appeal and rectify the decision made by
-the system, meaning that the system is always open to scrutiny and correction.
-One key result is that one can't simply measure their system against one 
-definition of fairness, declare it to be fair, and then put the system into
+system and for providing remedies for those harmed by the system. A system
+cannot be entitlement fair without a way to appeal and rectify the decision made
+by the system, meaning that the system is always open to scrutiny and
+correction. One key result is that one can't simply measure their system against
+one definition of fairness, declare it to be fair, and then put the system into
 production without oversight and recourse. This is a key difference from 
 existing fairness measures in that it increases the accountability of the system
 implementer to the system's users to maintain the system's fairness over time

@@ -1,5 +1,5 @@
 \documentclass[11pt, a4paper, hyphens]{article}
-\usepackage[a4paper, left=30mm, right=30mm]{geometry} % margin=2.6cm
+\usepackage[a4paper, left=30mm, right=30mm, bottom=40mm]{geometry} % margin=2.6cm
 
 \usepackage[utf8]{inputenc}  % allow utf-8 input
 \usepackage[T1]{fontenc}     % use 8-bit T1 fonts
@@ -15,6 +15,7 @@
 \usepackage{bbm}
 \usepackage{amsthm}
 \usepackage{rotating}
+\usepackage{enumitem}
 
 \hypersetup{                 % setup the hyperref package
     colorlinks=true,
@@ -75,11 +76,13 @@ December\fi, \number \year}
 
 \begin{document}
 
+\setcounter{page}{9}
+
 \maketitle
 
-% \begin{abstract}
-%     \input{sections/abstract.tex}
-% \end{abstract}
+\begin{abstract}
+    \input{sections/abstract.tex}
+\end{abstract}
 
 \section{Introduction}\label{sec:introduction}
 \input{sections/intro.tex}
@@ -96,7 +99,6 @@ December\fi, \number \year}
 \section{Discussion}\label{sec:conclusion}
 \input{sections/conclusion.tex}
 
-% \section*{Aknowledgements}\label{sec:acknowledgements}
 \pagebreak
 \bibliography{references}
 \end{document}

@@ -1,5 +1,5 @@
 \documentclass[11pt, a4paper, hyphens]{article}
-\usepackage[a4paper, left=30mm, right=30mm]{geometry} % margin=2.6cm
+\usepackage[a4paper, left=30mm, right=30mm, bottom=40mm]{geometry} % margin=2.6cm
 
 \usepackage[utf8]{inputenc}  % allow utf-8 input
 \usepackage[T1]{fontenc}     % use 8-bit T1 fonts
@@ -16,6 +16,8 @@
 \usepackage{amsthm}
 \usepackage{rotating}
 \usepackage{pdfpages}
+\usepackage{enumitem}
+
 
 \hypersetup{                 % setup the hyperref package
     colorlinks=true,
@@ -42,6 +44,9 @@
 \usepackage{subcaption}
 \usepackage{centernot} % for the comparison
 
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 %\theoremstyle{definition}
 \newtheorem{definition}{Definition}
 \newtheorem{theorem}{Theorem}
@@ -53,7 +58,8 @@
 \RequirePackage[varqu]{zi4} 
 \RequirePackage[libertine]{newtxmath}
 
-\usepackage[round,comma]{natbib}
+\usepackage[round,comma,numbers]{natbib}
+\usepackage{chapterbib}
 \bibliographystyle{plainnat}
 
 \newcommand{\monthyeardate}{\ifcase \month \or January\or February\or March\or %
@@ -73,6 +79,10 @@ December\fi, \number \year}
 
 \maketitle
 
+\begin{abstract}
+    \input{sections/abstract.tex}
+\end{abstract}
+
 \section{Introduction}\label{sec:introduction}
 
 \input{sections/intro.tex}
@@ -84,9 +94,9 @@ December\fi, \number \year}
 \section{Results}\label{sec:results}
 
 What follows is the full text of the paper produced in collaboration with Llama.
+\clearpage
 
 % FULL PAPER INSERT HERE
-
 \includepdf[pages=-]{../src/top-level.pdf}
 
 This is the end of the collaboration with Llama. Beyond this point, all text

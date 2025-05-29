@@ -2,13 +2,14 @@ In this paper, we will center our attention on a class of decision problems
 corresponding to the following formalism. There exists some population of 
 individuals $I = \{i_1, i_2, \ldots, i_n\}$ over whom we must distribute some
 finitely divisible amount of a resource. A \textit{decision rule} is a
-mapping $d: I \rightarrow \{0, 1\}$, under which $i_n$ receives the resource iff
-$d(i_n) = 1$. Since the resource is finite, there is a constraint on the number
-of individuals who can receive positive outcomes. As an example, consider the
-process of allocating loans over a pool of applicants — for each individual in
-the applicant pool, we have a binary choice to either approve or deny the loan,
-and only on acceptance does the individual receive capital. The bank cannot 
-approve all applicants, as they would run out of capital to lend.
+mapping $d: I \rightarrow \{0, 1\}$, under which for all $1\leq j\leq n$, $i_j$
+receives the resource iff $d(i_j) = 1$. Since the resource is finite, there is a
+constraint on the number of individuals who can receive positive outcomes. As an
+example, consider the process of allocating loans over a pool of applicants —
+for each individual in the applicant pool, we have a binary choice to either
+approve or deny the loan, and only on acceptance does the individual receive
+capital. The bank cannot approve all applicants, as they would run out of
+capital to lend.
 
 An algorithmic decision maker in this setup is a system, particularly a
 technical system, under which a decision rule is implemented as a set of steps
@@ -25,7 +26,7 @@ the following shape:
     \item Collect covariates $X=\{$household income, geographic location of residence$\}$
     \item Let $C(x_2) =$ projected cost of living in location of residence, $x_1 =$
           household income
-    \item $f(X) = x_2 - C(x_1) \geq 10000$
+    \item $f(X) = x_1 - C(x_2) \geq 10000$
 \end{itemize}
 
 It is important to note that not all problem domains to which algorithmic
@@ -38,11 +39,21 @@ While these cases warrant further study, we will not consider them here.
 
 \subsection{Algorithmic Fairness Measures}\label{sec:fairness-measures}
 
-Algorithmic fairness measures as they're presented in the literature operate on
-the classification scheme $f$ and a set of morally protected characteristics
-such as race or gender $A \subseteq X$, attempting to enforce constraints on how 
-decisions can be sensitive to such characteristics. An overview of measures
-commonly discussed in the literature is presented below.
+Algorithmic fairness measures operate on the classification scheme $f$ and a set
+of morally protected characteristics such as race or gender $A \subseteq X$,
+enforcing constraints on how decisions can be sensitive to such characteristics.
+These measures are define a notion of fairness which governs how the resource
+may and may not be allocated across people based on their protected attributes.
+For example, one may wish to ensure that the algorithm does not discriminate
+against individuals of a particular race, and may therefore wish to impose a
+constraint on the algorithm ensuring that race does not change the probability
+of receiving a position outcome. In order to develop a clear account of
+entitlement fairness, we will first survey the existing measures of fairness in
+the literature and identify the aspects of fairness they capture. We can then
+use this survey to identify the aspects of entitlement justice which are not
+protected by these measures, and which we will need to encode in our own
+measure. An overview of measures commonly discussed in the literature is
+presented below.
 
 A critical point to note in the discussion of algorithmic fairness is the 
 distinction between individual and group fairness. In group fairness, we form
@@ -76,7 +87,7 @@ entitlement justice. For a more exhaustive presentation of existing measures,
 see~\cite{CorbettDavies_2023}.
 
 As a running example, consider the case of a hiring algorithm. The decision
-problem is to map a set of applicants to hiring decision. Our algorithm must
+problem is to map a set of applicants to hiring decisions. Our algorithm must
 implement a function to do so based only on the personal information presented
 in their resumes, which is their education, experience, and cover letter. We
 want to ensure that our hiring practices are fair with respect to race, and
@@ -90,13 +101,14 @@ gender.
 In other words, the classification function may not receive any morally
 protected covariates as inputs. So, for our hiring admissions case, we would be
 forced to remove race and gender from $X$ and only consider education and
-experience.
+experience~\citep{CorbettDavies_2023}.
 
 This notion is intuitively appealing — how can the algorithm discriminate
 against one based on their race if it doesn't know their race? However, it is
 clear that this measure is not sufficient to ensure fairness. For example, if
 one attended a historically black college, their education may function as a
-proxy for their race, allowing bias to remain in the algorithm.
+proxy for their race, allowing bias to remain in the
+algorithm~\citep{Datta_2017}.
 
 \begin{definition}
     Demographic Parity — $f$ satisfies demographic parity iff
@@ -113,7 +125,7 @@ appropriate. However in other circumstances such as hiring or parole,
 difficulties arise.
 
 Under demographic parity, the probability of success between
-groups must be balanced, hut if the base rates of success are unequal between
+groups must be balanced, but if the base rates of success are unequal between
 groups, this leads to poor outcomes. For example, if women are much more
 qualified for a job on average than men, then demographic parity will require
 that we hire less qualified men in place of more qualified women in order to
@@ -123,30 +135,30 @@ will be very high for women, creating a severely unfair
 practice~\citep{Barocas_2017}.
 
 \begin{definition}
-    Equalized Odds — $f$ satisfies equalized odds if given a true outcome $o$
+    Equalized Odds — $f$ satisfies equalized odds if given a true outcome $O$
     for each individuals, we have
-    \[P[f(X)=1|A=a, o=1] = P[f(X)=1|A=b, o=1]\;\forall a, b\in A\]
-    \[P[f(X)=1|A=a, o=0] = P[f(X)=1|A=b, o=0]\;\forall a, b\in A\]~\citep{Hardt_2016}.
+    \[P[f(X)=1|A=a, O=1] = P[f(X)=1|A=b, O=1]\;\forall a, b\in A\]
+    \[P[f(X)=1|A=a, O=0] = P[f(X)=1|A=b, O=0]\;\forall a, b\in A\]~\citep{Hardt_2016}.
 \end{definition}
 
 In cases where the output value of the classifier $f$ disagrees with the true
-outcome $o$, we have either a false position or false negative. 
+outcome $O$, we have either a false positive or false negative. 
 Equalized odds requires that the true positive and false positive rates be
 balanced between groups. This is often thought to ensure there is no disparate 
-mistreatment across groups. In our hiring case, for example, equalized odds
-ensures that no one racial group is more likely to be falsely rejected or
-erroneously hired than another. Given one has been rejected, the probability it
-was a wrongful rejection is equal regardless of their race or gender.
+treatment across groups. In our hiring case, for example, equalized odds ensures
+that no one racial group is more likely to be falsely rejected or erroneously
+hired than another. Given one has been rejected, the probability it was a
+wrongful rejection is equal regardless of their race or gender.
 
 Equalized odds has two concerns associated with it. Firstly, the condition
 becomes difficult to satisfy when the base rates of success are unequal between
 groups, as differing base rates imply differing false positive and false
-negative rates. In our hiring case, once again imagine that women are much more
-qualified for a job on average than men. This condition in the population
-would lead to a model distributing more false positives to women and more false
-negatives to men, and in order to rectify this imbalance, we would need to use
-a different threshold of qualification for women than for men, sacrificing the
-accuracy of the model.
+negative rates when the same decision cutoff is used between groups. In our
+hiring case, once again imagine that women are much more qualified for a job on
+average than men. This condition in the population would lead to a model
+distributing more false positives to women and more false negatives to men, and
+in order to rectify this imbalance, we would need to use a different threshold
+of qualification for women than for men, sacrificing the accuracy of the model.
 
 A second concern with equalized odds is that it is easily manipulable. Consider
 the following example from criminal justice. We have a distribution rule which
@@ -219,17 +231,17 @@ section~\ref{sec:introduction}, the dominant theory of distributive justice used
 in connection with algorithmic decision making is John Rawls' theory of liberal
 egalitarianism, which we will present here.
 
-Rawls introduces his account of justice through a thought-experiment called the
-veil of ignorance. In this thought-experiment, one is asked to imagine
-themselves in a pre-societal world, working in collaboration with a number of
-others to determine how resources should be allocated across society once it
-begins. Critically, all those involved in designing this distribution of goods
-are unaware of what their own position and endowments in society will be. One
-may find themselves endowed with a high level of intelligence, or a valuable
-skill, or wealth at birth, or one may find themselves with none of these things,
-or the opposite. Without knowing which of these positions one will occupy,
-Rawls argues that one will be motivated to design a society in which the
-following two principles are satisfied:
+\cite{Rawls_1971} begins with a thought-experiment called the veil of ignorance.
+In this thought-experiment, one is asked to imagine themselves in a pre-societal
+world, working in collaboration with a number of others to determine how
+resources should be allocated across society once it begins. Critically, all
+those involved in designing this distribution of goods are unaware of what their
+own position and endowments in society will be. One may find themselves endowed
+with a high level of intelligence, or a valuable skill, or wealth at birth, or
+one may find themselves with none of these things, or the opposite. Without
+knowing which of these positions one will occupy, Rawls argues that one will be
+motivated to design a society in which the following two principles are
+satisfied:
 
 \begin{enumerate}
     \item Each person has an indefeasible right to the most extensive basic 
@@ -240,18 +252,19 @@ following two principles are satisfied:
           \textit{difference principle}).
 \end{enumerate}
 
-Rawls refers to the group of individuals designing the society from behind the
-veil of ignorance as the \textit{original position}. The argument from the
-original position results in citizens living under a social contract which
-is guided by the two principles given above. The principles allow us to measure,
-for any given distribution of resources across society, whether or not the
-distribution is fair. If the distribution is not fair, then Rawls endorses
-a program of redistribution to bring the distribution into line with the
-principles. For example, a society with a high-level of wealth inequality is
-in violation of the difference principle — the wealth gap represents an economic
-inequality which is not to the greatest benefit of the least advantaged. In this
-case, Rawls would endorse a program of redistribution to balance the wealth
-across the society in accord with the principles given above.
+Rawls refers to the people in the group of individuals designing the society
+from behind the veil of ignorance as being in the \textit{original position}.
+The argument from the original position results in citizens living under a
+social contract which is guided by the two principles given above. The
+principles allow us to measure, for any given distribution of resources across
+society, whether or not the distribution is fair. If the distribution is not
+fair, then Rawls endorses a program of redistribution to bring the distribution
+into line with the principles. For example, a society with a high-level of
+wealth inequality is in violation of the difference principle — the wealth gap
+represents an economic inequality which is not to the greatest benefit of the
+least advantaged. In this case, Rawls would endorse a program of redistribution
+to balance the wealth across the society in accord with the principles given
+above.
 
 This type of distributive justice theory is what we refer to as an
 \textit{end-state} theory of justice. The distribution of goods across society
@@ -273,18 +286,22 @@ individual receives equal opportunity to a loan. However, if the decision rule
 is such that only individuals with a household income above \$100,000 per year,
 or those who are members of a particular race, are able to receive a loan, then
 this clearly doesn't provide equal opportunity to all. A measure like
-demographic parity ensures that individuals from each protected group are equally
-likely to receive a loan, therefore balancing opportunity across groups. However,
-whether or not this satisfies the difference principle depends on the base rates
-of success across groups. If the base rate of loan default is higher for men
-than for women, demographic parity may require that we give loans to some men
-who are less likely to pay back their loans rather than qualified women. Absent
-from this metric is any consideration of who is considered to be the least
-advantaged in the situation. By Rawls, we should be allocating capital to those
-individuals who have the least access to capital, a condition which is not
+demographic parity ensures that individuals from each protected group are
+equally likely to receive a loan, therefore balancing opportunity across groups.
+However, this doesn't ensure that all persons in the population have equal
+access to capital, it only ensures that the access of persons from different 
+groups to capital as a direct result of the output of the algorithm is equal.
+Absent from this metric is any consideration of who is considered to be the
+least advantaged in the situation. By Rawls, we should be allocating capital to
+those individuals who have the least access to capital, a condition which is not
 satisfied by demographic parity. \citep{Hertweck_2023} shows how Rawls' theory
 can be more fully captured in a group-based fairness metric, which we will not
 go through the details of here. However, the key point echoed throughout the
 literature is that the common measures of algorithmic fairness stem from 
-egalitarianism, and it is unclear how to extend these measures to a theory like Nozick's
-which does not operate on an end-state theory of justice.
+egalitarianism—demographic parity ensures one concept of equality between
+groups, just as equalized odds does. The measures are all concerned with a
+basic equality between individuals in the population, which makes it unclear
+how they can be reconciled with a theory of justice which is not concerned with
+this type of equality. In the next section, we will discuss Nozick's theory of
+entitlement, which has no such basic commitment to equality, and which
+therefore represents a puzzle for algorithmic fairness measures.

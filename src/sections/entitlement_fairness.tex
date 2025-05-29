@@ -61,7 +61,7 @@ resources in society, the entitlement approach holds that there are particular
 actions and features of individuals that earn them the right to a higher level
 of education.  Just what these features are depends on the context and problem 
 domain of the decision-making system. Unlike the egalitarian approach, we cannot
-start from teh assumption of equality, and instead must start by defining the 
+start from the assumption of equality, and instead must start by defining the 
 set of relevant features that give rise to an individual's entitlement. From
 this analysis, it is evident that to encode entitlement fairness, we cannot
 simply measure the outputs of an algorithm, but rather must analyze the
@@ -80,7 +80,8 @@ covariates in a straightforward way, but rather will be a set of more nuanced
 features that must be predicted on the input data by a complicated
 high-dimensional model. For example, in the case of college admissions you may
 want to predict a feature like ``academic potential'' which will be difficult to
-extract. These features can be sorted into two broad categories:
+extract, but which is relevant to the entitlement of an individual to be
+admitted. Entitlement features can be sorted into two broad categories:
 \begin{itemize}
     \item \emph{Positive Entitlement Features}: These are features of an
     individual that give rise to property rights. For example, an
@@ -130,7 +131,7 @@ relevant features which are then used to make reasons-based allocation decisions
 This may seem to stand in stark contrast to the way that many machine learning
 algorithms are currently developed. For example, in a typical supervised
 learning setting, a model is trained to map a set of inputs to a set of outputs
-according to a high-dimensions loss function, with little regard for the
+according to a high-dimensional loss function, with little regard for the
 manner in which the inputs are processed. However, the internal structure of
 neural networks and other machine learning models gives rise to a set of
 features computed by the model, constituting a lower-dimensional representation
@@ -140,37 +141,37 @@ are relevant to implement individual fairness over as a way of
 exercising control over \emph{how} the model makes decisions in order to
 implement fairness as a process.
 
-What would selection of these features look like in practice? Consider again the case of
-college admissions, and in particular, how decision are made about admissions of
-students who have less access to resources and academic opportunities. There are
-several features that are not straightforwardly encoded in the input data but
-are certainly relevant to the entitlement
+What would selection of these features look like in practice? Consider again the
+case of college admissions, and in particular, how decision are made about
+admissions of students who have less access to resources and academic
+opportunities. There are several features that are not straightforwardly encoded
+in the input data but are certainly relevant to the entitlement
 \begin{itemize}
     \item Firstly, we might want to extract a feature that captures the notion
     of current academic performance. This is likely a function of GPA, test
     scores, and other typical academic indicators, and is justified by an appeal
     to the idea that students who perform well academically are more likely to
     succeed in college. Likelihood of success is made relevant by the fact
-    that individuals who are likely to succeed at the university return gains 
-    to the university, and therefore justify their admissions in a free market
-    of talent. This positive feature represents an action of the individual that
-    gives rise (``earns'') their right to be admitted. This stands in contrast
-    to the Rawlsian approach, under which there is no broad support for
-    meritocratic systems. Academic performance for Rawls is likely a product of
-    natural talent and luck, and therefore by Rawlsian standards, is not a valid
-    basis to allocate admissions inequitably.
-    \item In contrast, we should also say that a student is entitled to admissions if
-    they have demonstrated a stronger work ethic and commitment level than their
-    peers, even if they attended a lower income school and thereby had less 
-    access to advanced classes and tutoring resources. Effort and commitment
-    demonstrate a greater value endowed into an application, and therefore a
-    higher degree of entitlement. Here the difference with Rawls is more subtle.
-    Rawls would agree that the student from a lower income school and with less
-    access to resources should be promoted in admissions, but as a redistributive
-    effort rather than as a recognition of the value endowed in the application.
-    On the entitlement approach, two students who have expended equal work and
-    effort should be treated equally in this respect, regardless of their 
-    background.
+    that individuals who are likely to succeed at the university will maximally
+    benefit both themselves and the university, and therefore justify their
+    admissions in a free market of talent. This positive feature represents an
+    action of the individual that gives rise (``earns'') their right to be
+    admitted. This stands in contrast to the Rawlsian approach, under which
+    there is no broad support for meritocratic systems. Academic performance for
+    Rawls is likely a product of natural talent and luck, and therefore by
+    Rawlsian standards, is not a valid basis to allocate admissions inequitably.
+    \item In contrast, we should also say that a student is entitled to
+    admissions if they have demonstrated a stronger work ethic and commitment
+    level than their peers, even if they attended a lower income school and
+    thereby had less access to advanced classes and tutoring resources. Effort
+    and commitment demonstrate a greater value endowed into an application, and
+    therefore a higher degree of entitlement. Here the difference with Rawls is
+    more subtle. Rawls would agree that the student from a lower income school
+    and with less access to resources should be promoted in admissions, but as a
+    redistributive effort rather than as a recognition of the value endowed in
+    the application. On the entitlement approach, two students who have expended
+    equal work and effort should be treated equally in this respect, regardless
+    of their background.
     \item Finally, we might also want to consider a student's cultural fit and
     addition to the campus community. This feature reflects a student's
     entitlement on the basis of more than just academic merit — a student who
@@ -210,7 +211,7 @@ disqualifying. In either case, we can see that errors in the prediction of
 the features result in a violation of the entitlement of an individual. Under 
 Nozick's entitlement theory, there is no one individual or group for whom 
 violations of entitlement are more or less important. Therefore, there is no
-no reason to assume enforce any particular pattern of prediction errors in the
+no reason to enforce any particular pattern of prediction errors in the
 feature predictors. Rather, what matters, is that the predictors are as accurate
 as possible, resulting in the fewest possible violations of entitlements.
 However, no predictor will remove all errors, and therefore we must also ask how
@@ -270,30 +271,30 @@ case rectification operates the same way.
 Having developed a qualitative account of entitlement fairness, we may now
 formalize our account in a way that allows us to measure it. We can
 define a measure of entitlement fairness as follows. Given our typical decision
-problem, identify a set of relevant features of each individual in the
-population, $V = \{v_1, v_2, \ldots, v_i\}$, where the value of each feature is
-a discrete variable which can take on a finite number of values. For example, 
-the feature ``academic performance'' might take on the values ``poor'', ``fair'',
-``good'', and ``excellent''. Implement a predictor for each feature, which maps
-from the covariates of an individual $X$ to a predicted value of the feature,
-$v_j \approx \hat{g_j}(X)$. Assume that the predictor $\hat{g}$ is chosen from a
-class of possible predictors $G_j$ for each feature, and define the accuracy of
-the predictor as $A(\hat{g_j}) = P[\hat{g_j}(X) = v_j]$. Recall from the setup
-in section 2 that $f$ is the function $f: X -> \{0, 1\}$ which determines from
-the covariates of an individual whether they are entitled to the resource in
-question. Now, these are the conditions for entitlement fairness:
+problem, identify a set of relevant features $V = \{v_1, v_2, \ldots, v_i\}$,
+where the value of each feature is a discrete variable which can take on a
+finite number of values. For example, the feature ``academic performance'' might
+take on the values ``poor'', ``fair'', ``good'', and ``excellent''. Implement a
+predictor for each feature, which maps from the covariates of an individual $X$
+to a predicted value of the feature, $v_j \approx \hat{g_j}(X)$. Assume that the
+predictor $\hat{g}$ is chosen from a class of possible predictors $G_j$ for each
+feature, and define the error of the predictor as
+$E(\hat{g_j}) = \mathbb{E}[|\hat{g_j}(X) - v_j|]$. Recall from the setup in section 2 that
+$f$ is the function $f: X -> \{0, 1\}$ which determines from the covariates of
+an individual whether they are entitled to the resource in question. Now, these
+are the conditions for entitlement fairness:
 \begin{enumerate}
     \item $P[f(X_1) = 1 | V_1] = P[f(X_2) = 1 | V_1]\;\forall X_1, X_2$ (Independence Condition)
-    \item $\hat{g_j} = \mathop{\arg\max}\limits_{g_j\in G_j}A(g)\; \forall j$ (Max Accuracy Predictor Condition)
+    \item $\hat{g_j} = \mathop{\arg\min}\limits_{g_j\in G_j}E(g)\; \forall j$ (Max Accuracy Predictor Condition)
 \end{enumerate}
 In addition to these mathematical conditions, we also require that
-\begin{enumerate}
-    \item The values of the features predicted by the model be made
-    transparent to the individuals affected by the decision.
+\begin{enumerate}[start=3]
     \item The individuals affected by the decision have suitable opportunities
     to appeal the decision of the predictor for rectification.
     \item The importance of the features used in the decision problem be 
     justified and defended in a public forum. 
+    \item The values of the features predicted by the model be made
+    transparent to the individuals affected by the decision.
 \end{enumerate}
 
 These conditions together provide a context-sensitive and principled approach to
@@ -309,9 +310,13 @@ reaches a decision is fair according to the principles of entitlement justice as
 described above. The second condition ensures that the features are predicted
 as accurately as possible, and that the decision-maker is producing as few 
 violations of entitlement as possible. The requirements for feature
-transparency and rectification ensure that when a decision is made that does 
-violate entitlement, the individual has the opportunity to appeal the decision
-and have it rectified according to Nozick's theory.
+transparency and rectification ensure that decisions are made according to
+features which are agreed upon as relevant in a public forum, and that when a
+decision is made that does  violate entitlement, the individual has the
+opportunity to appeal the decision and have it rectified according to Nozick's
+theory. This provides a context-sensitive approach to fairness under which 
+algorithmic systems and their designers are accountable to the public who they
+make decisions about.
 
 \subsection{Entitlement Fairness in Practice}
 
@@ -327,32 +332,38 @@ from the blue group.
 The university is interested in allocating admissions to students in a way that
 is deemed fair, but there are some severe statistical disparities in the
 students who are applying. Red group students are much more likely to be
-interested in applying to the university's underwater basket weaving program,
-while blue group students are much more likely to be interested in applying to
-the university's computer science program. At this college, the computer science 
-program is much more competitive than the underwater basket weaving program,
-because underwater basket weaving is able to accept a much larger number of
-students. The university is developing a single central admissions algorithm to
-handle admittance across all programs.
+interested in applying to the program A, while blue group, who are historically
+disadvantaged, students are much more likely to be interested in applying to
+program B. At this college, the program B is much more competitive than program
+A, because program A is able to accept a much larger number of students. The
+university is developing a single central admissions algorithm to handle
+admittance across all programs. The algorithm must must decide which students to
+admit so that the output of the model is admits the right total number of
+students to the university, and the right number of students to each program.
+The university is also interested in admitting students fairly, and so want to
+understand what fairness measure can be applied to the whole algorithm or output
+distribution to ensure it is fair.
 
 Under conventional measures of algorithmic fairness, the university is in a 
-difficult position. They can admit only a small number of students to the 
-computer science program, and since the majority of blue group students favor 
-computer science, they are likely to be rejected at a much higher rate than red
-group students. This would be opposite from a purely Rawlsian aproach, in which
-the historically disadvantaged blue group students should be favored in the 
-admissions process. To enforce this advantage, the university could implement a
-parity measure, such as equalized odds. However, in doing so, they would be
-preferring students from the blue group over red gorup students with equal
-qualifications—given two students with equal qualifications, one from each
-group, who both applied into underwater basket weaving, the algorithm would
-certainly prefer the blue group student in order to satisfy the output
-distribution constraints. In the end, balancing outcomes across the two groups
-is a bad idea, as the unequal base rates of acceptance due to self-selection 
-into the programs will naturally result in a highly unbalanced output
-distribution. Correcting for this imbalance results in a system that is
-inherently redistributive, and chooses to favor demographic group membership 
-over features relevant to the decision problem.
+difficult position. They can admit only a small number of students to program B,
+and since the majority of blue group students favor program B, they are likely
+to be rejected at a much higher rate than red group students. This would be
+opposite from a purely Rawlsian aproach, in which the historically disadvantaged
+blue group students should be favored in the admissions process. To enforce this
+advantage, the university could implement a parity measure, such as equalized
+odds. However, in doing so, they would be preferring students from the blue
+group over red group students with equal qualifications—given two students with
+equal qualifications, one from each group, who both applied into program A, the
+algorithm would certainly prefer the blue group student in order to satisfy the
+output distribution constraints. In the end, balancing outcomes across the two
+groups is a bad idea, as the unequal base rates of acceptance due to
+self-selection into the programs will naturally result in a highly unbalanced
+output distribution. Even applying the metric separately to each program fails
+to resolve the difficulty, since the base rates of acceptance and of interest
+within each group within each program are different. Correcting for this
+imbalance results in a system that is inherently redistributive, and chooses to
+favor demographic group membership over features relevant to the decision
+problem.
 
 In contrast, the entitlement fairness approach has no qualms about the inequity
 in the output distribution. The university is free to admit a demographic 

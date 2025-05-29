@@ -58,10 +58,14 @@ instructed Claude 3 Opus to write a paper according to the following prompt:
 \end{quote}
 
 Here, we present the full output of the model in response to this prompt,
-followed by a brief commentary on the result. What follows is the full output of
-the model, with no edits or changes made to the text.
+followed by a brief commentary on the result. What follows is the model output,
+with no edits made to the text.
 
-\includepdf[pages=-]{../paper_gen/gen.pdf}
+\setcounter{section}{0}
+\clearpage
+\input{../paper_gen/generated.tex}
+\clearpage
+\setcounter{section}{8}
 
 \subsection{Commentary}
 
@@ -80,40 +84,46 @@ this paper from being a viable academic work.
 The paper begins relatively strongly, with a clear introduction and an accurate
 presentation of the problem. The background material on algorithmic fairness and
 distributive is presented clearly and correctly, and the model does a good job
-of connecting to and using relevant literature. The model also does a good job
-of foreshadowing an eventual argument throughout the early sections of the
-paper, though the argument itself will not live up to the expectations set by
-the introduction. In other words: the model does a good job of writing a viable
-start to the paper, all the way up until the point where it is meant to present
-a novel argument.
+of connecting to and using relevant literature. For example, the presentation of
+canonical fairness measures on pages 4 and 5 is fully correct and cites the
+correct literature for each measure—the same literature cited in our paper. The
+model also does a good job of foreshadowing an eventual argument throughout the
+early sections of the paper. For example, on page 2, ``These limitations highlight
+the need for approaches to algorithmic fairness that are philosophically
+grounded, contextually sensitive, and capable of addressing both procedural and
+distributive aspects of justice. This thesis aims to contribute to this effort
+by exploring how Nozick’s entitlement theory might offer a distinctive
+perspective on algorithmic fairness—one that foregrounds procedural justice and
+historical processes rather than distributive patterns.''  The model does a good
+job of writing a viable start to the paper, all the way up until the point where
+it is meant to present a novel argument, beginning on page 10.
 
 In leading up to a positive account of entitlement fairness, the model extracts
 a lot of similar significant features to what were extracted in our paper.
-Notably, the model identified that for entitlement fairness, the model must make
-determinations based on the actions and decisions of individuals as a matter of
-procedural justice, and must be transparent about what the actions and decisions
-used are, just as we identified that that positive and negative entitlement 
-features should be the basis of the decision and must be made transparent.
-Similarly, the model points out that there must be a rectification procedure
-through which individuals can appeal the decisions of the algorithm. The
-identification and coherent defense of the relevance of these features is, 
-however, followed by a main argument which is lacking in substance and clarity.
+Notably, on page 10-11, the model identified that for entitlement fairness,
+the algorithm must make determinations based on the actions and decisions of
+individuals as a matter of procedural justice, and must be transparent about
+what the actions and decisions used are, just as we identified that that
+positive and negative entitlement features should be the basis of the decision
+and must be made transparent. Similarly, the model points out that there must be
+a rectification procedure through which individuals can appeal the decisions of
+the algorithm.
 
 When the algorithm attempts to provide a positive account of entitlement
-fairness, the argument falls flat. We are provided with a measure which is the
-average of a certain score which is computed over all individuals in for whom 
-decisions are made. The score contains 7 free parameters used as weights in 
-linear equations, and the model provides no account of how those weights should
-be set. Even if the weights were defended, the terms that are being weighted are
-meaningless. For example, we are told that one of the weighted factors in the
-``consent and transparency index'' is $T_i$, which is ``a measure of the 
-transparency of the algorithm's decision process for individual $i$, normalized
-to a value between 0 and 1.'' How is one meant to measure transparency? Why 
-would transparency of one algorithm differ over different individuals? Similarly
-$A$ is ``a measure of the algorithm's accessibility to contestation and appeal, 
-normalized to a value between 0 and 1.'' How is this meant to be measured? 
-What factors are used to compute this value? The model makes no attempt to 
-address or acknowledge these questions. 
+fairness beginning on page 13, the argument falls flat. We are provided with a
+measure which is the average of a certain score which is computed over all
+individuals in for whom decisions are made. The score contains 7 free parameters
+used as weights in linear equations, and the model provides no account of how
+those weights should be set. Even if the weights were defended, the terms that
+are being weighted are meaningless. For example, we are told that one of the
+weighted factors in the ``consent and transparency index'' is $T_i$, which is
+``a measure of the transparency of the algorithm's decision process for
+individual $i$, normalized to a value between 0 and 1.'' How is one meant to
+measure transparency? Why would transparency of one algorithm differ over
+different individuals? Similarly $A$ is ``a measure of the algorithm's
+accessibility to contestation and appeal, normalized to a value between 0 and
+1.'' How is this meant to be measured? What factors are used to compute this
+value? The model makes no attempt to address or acknowledge these questions. 
 
 What we are left with is what you might have expected—the tone, and style of a
 viable academic paper, with accurate background information and quality
